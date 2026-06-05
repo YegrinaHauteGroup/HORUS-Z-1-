@@ -1,6 +1,6 @@
 <div align="center">
 
-# ⬡ Z-1
+# ⬡ HORUS(Z-1)
 
 ### Open Source Intelligence & Reconnaissance Integrated System
 
