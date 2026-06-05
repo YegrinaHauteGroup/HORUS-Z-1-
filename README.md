@@ -1,8 +1,8 @@
 <div align="center">
 
-# ⬡ HORUS(Z-1)
+# HORUS(Z-1)
 
-### Open Source Intelligence & Reconnaissance Integrated System
+### Open Source Intelligence & Reconnaissance Integrated System, by YEGRINA HAUTE GROUP 2026
 
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js)](https://nextjs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://typescriptlang.org)
