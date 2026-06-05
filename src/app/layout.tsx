@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     "defense stocks", "commodities tracker",
     
     // Brand
-    "osiris", "osirisai", "osirisai.live",
+    "HORUS", "osirisai", "osirisai.live",
   ],
   authors: [{ name: "HORUS Project", url: SITE_URL }],
   creator: "HORUS Project",
@@ -108,7 +108,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: " HORUS — Open Source Palantir Alternative | Live Tracking + OSINT Tools",
+    title: " HORUS — Open Source Alternative | Live Tracking + OSINT Tools",
     description: "Track 10K+ flights, satellites & CCTV worldwide. Run Nmap, DNS, WHOIS scans from your browser. 20+ live intel feeds. Free & open source.",
     creator: "@simplifaisoul",
     site: "@simplifaisoul",
@@ -119,7 +119,7 @@ export const metadata: Metadata = {
   other: {
     "apple-mobile-web-app-capable": "yes",
     "apple-mobile-web-app-status-bar-style": "black-translucent",
-    "apple-mobile-web-app-title": "OSIRIS",
+    "apple-mobile-web-app-title": "HORUS",
     "mobile-web-app-capable": "yes",
     "msapplication-TileColor": "#06060C",
     "msapplication-config": "none",
@@ -130,7 +130,7 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  name: "OSIRIS — OSINT Toolkit & Intelligence Platform",
+  name: "HORUS — Toolkit & Intelligence Platform",
   alternateName: ["OSIRIS", "OsirisAI", "Osiris OSINT"],
   url: SITE_URL,
   description: SITE_DESCRIPTION,
