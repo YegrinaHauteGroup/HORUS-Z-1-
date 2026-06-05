@@ -1,10 +1,10 @@
 # Self-Hosting HORUS with Docker
 
-OSIRIS ships as a self-contained Next.js standalone build. This guide covers
+HORUS ships as a self-contained Next.js standalone build. This guide covers
 running it with Docker / Docker Compose, deploying it as a [CasaOS](https://casaos.io)
 app, and configuring the optional API keys.
 
-> **TL;DR:** OSIRIS runs fully **without any API keys**. All core feeds
+> **TL;DR:** HORUS runs fully **without any API keys**. All core feeds
 > (aviation, satellites, fires, earthquakes, weather, news, CVEs) use public
 > keyless sources. Keys only matter for the optional RECON scanner backend and
 > for raising rate limits on a few feeds.
