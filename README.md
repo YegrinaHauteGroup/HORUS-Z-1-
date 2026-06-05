@@ -2,7 +2,7 @@
 
 # HORUS(Z-1)
 
-### Open Source Intelligence & Reconnaissance Integrated System, by YEGRINA HAUTE GROUP 2026
+### Open Source Intelligence & Reconnaissance Integrated System, by YEGRINA HAUTE GROUP Technologies,2026
 
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js)](https://nextjs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://typescriptlang.org)
@@ -19,7 +19,7 @@
 
 ## Overview
 
-Z-1 is a production-grade OSINT platform that provides situational awareness across multiple intelligence domains. Built with Next.js 16 and MapLibre GL, every data point is rendered via WebGL for 60fps performance even with thousands of concurrent entities on-screen.
+HORUS(Z-1) is a production-grade OSINT platform that provides situational awareness across multiple intelligence domains. Built with Next.js 16 and MapLibre GL, every data point is rendered via WebGL for 60fps performance even with thousands of concurrent entities on-screen.
 
 ### Key Capabilities
 
@@ -45,7 +45,7 @@ Z-1 is a production-grade OSINT platform that provides situational awareness acr
 
 ```
 ┌─────────────────────────────────────────────────┐
-│                  OSIRIS CLIENT                   │
+│                  HORUS(Z-1) CLIENT                   │
 │  ┌──────────┐  ┌──────────┐  ┌───────────────┐ │
 │  │ MapLibre  │  │  HUD     │  │  RECON Toolkit│ │
 │  │  GL (GPU) │  │ Panels   │  │  Port Scan    │ │
