@@ -11,7 +11,7 @@
 
 **A real-time global intelligence dashboard that aggregates live flight tracking, CCTV networks, earthquake monitoring, conflict zone mapping, and 24/7 news feeds into a single GPU-accelerated interface.**
 
-[Live Demo](https://osirisai.live) · [Report Bug](https://github.com/simplifaisoul/osiris/issues) · [Request Feature](https://github.com/simplifaisoul/osiris/issues)
+[Live Demo](https://horus-weld.vercel.app) · [Report Bug](https://github.com/yegrinahautegroup) · [Request Feature](https://github.com/yegrinahautegroup)
 
 </div>
 
