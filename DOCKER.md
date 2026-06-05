@@ -1,4 +1,4 @@
-# Self-Hosting OSIRIS with Docker
+# Self-Hosting HORUS with Docker
 
 OSIRIS ships as a self-contained Next.js standalone build. This guide covers
 running it with Docker / Docker Compose, deploying it as a [CasaOS](https://casaos.io)
