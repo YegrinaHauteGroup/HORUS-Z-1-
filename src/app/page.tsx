@@ -671,7 +671,7 @@ export default function Dashboard() {
       {/* ── MOBILE: Compact top status ── */}
 {isMobile && (
   <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.5 }} className="absolute top-3 right-3 z-[200] pointer-events-auto flex items-center gap-2">
-    <a href='https://www.officialyegrina.com' target='_blank' className="glass-panel px-3 py-1.5 flex items-center gap-1.5 text-[10px] font-mono tracking-widest hover:opacity-80 transition-opacity border-[var(--gold-primary)]/40 bg-[var(--gold-primary)]/10 text-[var(--gold-primary)]">
+    <a href='https://www.officialyegrina.com' target='_blank' className="glass-panel px-3 py-1.5 flex items-center gap-1.5 text-[10px] font-mono tracking-widest hover:opacity-80 transition-opacity border-gray-400/40 bg-gray-400/10 text-gray-400">
       SUPPORT
     </a>
   </motion.div>
