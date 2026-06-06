@@ -15,11 +15,17 @@ import ViewPresets from '@/components/ViewPresets';
 import KeyboardShortcuts from '@/components/KeyboardShortcuts';
 import GlobalStatusBar from '@/components/GlobalStatusBar';
 import LiveAlerts from '@/components/LiveAlerts';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const OsirisMap = dynamic(() => import('@/components/OsirisMap'), { ssr: false });
 const LayerPanel = dynamic(() => import('@/components/LayerPanel'));
 const CameraViewer = dynamic(() => import('@/components/CameraViewer'));
 const OsintPanel = dynamic(() => import('@/components/OsintPanel'));
+const [showSplash, setShowSplash] = useState(true);
+const [adminCode, setAdminCode] = useState('');
+const [error, setError] = useState(false);
+const [isLoading, setIsLoading] = useState(false);
 
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
@@ -523,106 +529,66 @@ export default function Dashboard() {
     <main className="fixed inset-0 w-full h-full bg-[var(--bg-void)] overflow-hidden">
 
       {/* ── SPLASH ── */}
+      {/* ── SPLASH (AnimatePresence와 함께) ── */}
       <AnimatePresence>
         {showSplash && (
           <motion.div
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8, ease: 'easeInOut' }}
-            className="absolute inset-0 z-[999] flex flex-col items-center justify-center overflow-hidden"
-            style={{ background: 'radial-gradient(ellipse at center, #0a0a14 0%, var(--bg-void) 70%)' }}
+            className="fixed inset-0 z-[999] flex flex-col items-center justify-center bg-black"
           >
-            {/* ── Scanline CRT overlay ── */}
-            <div className="absolute inset-0 pointer-events-none z-[1]" style={{
-              backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(212,175,55,0.015) 2px, rgba(212,175,55,0.015) 4px)',
-              animation: 'splashScanDrift 8s linear infinite',
-            }} />
-
-            {/* ── V1.1 badge — top-left ── */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.6 }}
-              transition={{ delay: 0.8, duration: 0.5 }}
-              className="absolute top-6 left-6 z-[2] font-mono text-[10px] tracking-[0.3em] text-gray-300"
-            >
-              V1.1
-            </motion.div>
-
-        
-            {/* ── HORUS title — letter-by-letter stagger ── */}
-            <div className="flex items-center gap-[0px] mb-3 z-[2]">
-              {'HORUS'.split('').map((letter, i) => (
-                <motion.span
-                  key={i}
-                  initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }}
-                  animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                  transition={{ delay: 0.5 + i * 0.08, duration: 0.8, ease: 'easeOut' }}
-                  className="text-4xl md:text-5xl font-medium tracking-[0.5em] font-mono"
-                  style={{ color: 'var(--text-heading)', textShadow: '0 0 30px rgba(255, 255, 255, 0.2)' }}
-                >
-                  {letter}
-                </motion.span>
-              ))}
+            {/* ── Titles ── */}
+            <div className="flex flex-col items-center mb-12">
+              <h1 className="text-5xl font-light tracking-[0.5em] text-white mb-4">HORUS</h1>
+              <p className="text-[10px] tracking-[0.4em] text-gray-500 uppercase">Global Intelligence System</p>
+              <p className="text-[8px] tracking-[0.2em] text-gray-700 uppercase mt-1">Yegrina Haute Group Technologies 2026</p>
             </div>
 
-            {/* ── Subtitle — typewriter reveal ── */}
-            <div className="overflow-hidden mb-8 z-[2]">
-              <motion.div
-                initial={{ width: 0 }}
-                animate={{ width: '100%' }}
-                transition={{ delay: 1.2, duration: 0.8, ease: 'easeInOut' }}
-                className="overflow-hidden whitespace-nowrap"
-              >
-                <p className="text-[7px] md:text-[10px] font-mono tracking-[0.5em] text-gray-400" style={{ opacity: 0.8 }}>
-                  POWERED BY YEGRINA HAUTE GROUP
-                </p>
-              </motion.div>
-            </div>
-
-            {/* ── Multi-stage progress bar ── */}
-            <div className="w-64 md:w-80 z-[2]">
-              {/* Thin progress track */}
-              <div className="relative w-full h-[2px] rounded-full overflow-hidden" style={{ background: 'rgba(212,175,55,0.1)' }}>
-                <motion.div
-                  initial={{ width: '0%' }}
-                  animate={{ width: ['0%', '25%', '50%', '78%', '100%'] }}
-                  transition={{ duration: 2.2, delay: 0.5, times: [0, 0.25, 0.5, 0.75, 1], ease: 'easeInOut' }}
-                  className="absolute inset-y-0 left-0 rounded-full"
-                  style={{ background: 'linear-gradient(90deg, #9ca3af, #f7f7f7, #9ca3af)', 
-                    boxShadow: '0 0 12px rgba(0, 0, 0, 0.81)' }}
+            {/* ── Login Logic / Progress Logic ── */}
+            {!isLoading ? (
+              <div className="flex flex-col items-center w-64 space-y-4">
+                <input
+                  type="text"
+                  placeholder="Administer Code"
+                  value={adminCode}
+                  onChange={(e) => { setAdminCode(e.target.value); setError(false); }}
+                  className="w-full bg-transparent border-b border-gray-800 text-center text-white placeholder-gray-700 focus:outline-none focus:border-white transition-colors pb-2 font-mono text-sm"
                 />
+                <button
+                  onClick={() => {
+                    const regex = /^yhg-22-(\d{4})$/;
+                    const match = adminCode.match(regex);
+                    if (match && parseInt(match[1], 10) <= 9999) {
+                      setIsLoading(true);
+                    } else {
+                      setError(true);
+                    }
+                  }}
+                  className="w-full py-2 bg-gray-900 text-gray-500 text-[10px] tracking-widest uppercase hover:bg-gray-800 transition-all border border-gray-800"
+                >
+                  Login
+                </button>
+                {error && (
+                  <p className="text-red-500 text-[9px] font-mono tracking-widest uppercase">Administer Code Error</p>
+                )}
               </div>
-
-              {/* Status messages — cycling */}
-              <div className="mt-3 h-4 flex items-center justify-center">
-                {[
-                  { text: 'ESTABLISHING SECURE CONNECTION...', delay: 1.1 },
-                  { text: 'INITIALIZING FEEDS...', delay: 1.1 },
-                  { text: 'CALIBRATING SENSORS...', delay: 1.7 },
-                  { text: 'SYSTEM READY', delay: 2.2 },
-                ].map((stage, i) => (
-                  <motion.span
-                    key={i}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: [0, 1, 1, 0] }}
-                    transition={{ delay: stage.delay, duration: 0.6, times: [0, 0.1, 0.7, 1] }}
-                    className="absolute text-[9px] font-mono tracking-[0.25em]"
-                    style={{ color: i === 3 ? 'var(--cyan-primary)' : 'var(--text-muted)' }}
-                  >
-                    {stage.text}
-                  </motion.span>
-                ))}
+            ) : (
+              <div className="w-64 md:w-80">
+                <div className="relative w-full h-[2px] bg-gray-900 overflow-hidden">
+                  <motion.div
+                    initial={{ width: '0%' }}
+                    animate={{ width: '100%' }}
+                    onAnimationComplete={() => setShowSplash(false)}
+                    transition={{ duration: 2.2, ease: 'easeInOut' }}
+                    className="absolute inset-y-0 left-0 bg-white shadow-[0_0_10px_rgba(255,255,255,0.5)]"
+                  />
+                </div>
+                <p className="mt-3 text-center text-[9px] font-mono text-gray-400 tracking-widest uppercase animate-pulse">
+                  System Initializing...
+                </p>
               </div>
-            </div>
-
-            
-
-            
-
-
-
-            {/* ── Inline keyframe for scanline drift ── */}
-
+            )}
           </motion.div>
         )}
       </AnimatePresence>
