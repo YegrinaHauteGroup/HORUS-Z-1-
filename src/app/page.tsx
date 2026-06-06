@@ -687,44 +687,48 @@ export default function Dashboard() {
 
       </motion.div>
 
-      {/* ── HEADER ── */}
-      <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 2.5 }} className={`absolute top-4 left-6 z-[200] pointer-events-none flex flex-col`}>
-        <div className="flex items-baseline gap-2">
-          <h1 className="text-xl font-medium tracking-[0.4em] text-gray-300 font-mono">HORUS</h1>
-          <span className="text-[10px] text-[var(--text-muted)] font-mono tracking-[0.15em] opacity-80">GLOBAL OPERATING SYSTEM</span>
+      {/* ── NEW CLEAN HEADER ── */}
+      <motion.header 
+        initial={{ opacity: 0, y: -20 }} 
+        animate={{ opacity: 1, y: 0 }} 
+        transition={{ duration: 0.8 }}
+        className="fixed top-0 left-0 w-full z-[200] bg-black/90 backdrop-blur-md border-b border-gray-800 px-6 py-3 flex items-center justify-between"
+      >
+        {/* Left: Logo & Branding */}
+        <div className="flex items-center gap-1.5">
+          <img src="/hautegroup.png"  alt="Yegrina Logo" className="w-8 h-8 object-contain" />
+          <div className="flex items-baseline gap-1.5">
+            <h1 className="text-xl font-light tracking-wider text-white font-['Inter'] leading-none">HORUS</h1>
+            <span className="text-xs text-gray-400 font-['Inter'] tracking-widest uppercase leading-none">GLOBAL OPERATING SYSTEM</span>
+          </div>
         </div>
-        <div className="flex items-center gap-4 mt-1">
-          <span className="text-[5px] text-gray-300 font-mono tracking-[0.3em] uppercase opacity-80">
-            POWERED BY YEGRINA HAUTE GROUP · C2 ENGINE: PHYSICAL COMMAND CORE · SENSORS: ORBITAL LATTICE · NET: LYCAN NETWORK
-          </span>
+
+        {/* Right: Status Bar */}
+        <div className="flex items-center gap-6 text-[11px] font-mono tracking-widest text-gray-300">
+           <span className="hidden lg:inline-flex items-center gap-2">
+             <ZuluClock />
+           </span>
+           <span className="flex items-center gap-1.5">
+             SYS: <span className={backendStatus === 'connected' ? 'text-green-500' : 'text-red-500'}>{backendStatus.toUpperCase()}</span>
+           </span>
+           {spaceWeather && (
+             <span className="hidden lg:inline">
+               SOLAR: <span style={{ color: spaceWeather.storm_color, fontWeight: 700 }}>Kp{spaceWeather.kp_index}</span>
+             </span>
+           )}
+           <span className="hidden lg:inline-flex items-center gap-1">
+             <span className="text-blue-400 font-bold">{Object.values(activeLayers).filter(Boolean).length}</span>
+             <span className="text-gray-400">FEEDS</span>
+           </span>
+           <UptimeClock />
         </div>
-      </motion.div>
-
-      {/* ── TOP-RIGHT STATUS (desktop) — C2 DISPLAY ── */}
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 3 }} className="status-bar-desktop absolute top-4 right-6 z-[200] pointer-events-none flex items-center gap-4 text-[9px] font-mono tracking-widest text-[var(--text-muted)]">
-
-        <span className="hidden lg:inline-flex items-center gap-1.5">
-          <ZuluClock />
-        </span>
-
-        <span className="flex items-center gap-1">SYS: <span className={backendStatus === 'connected' ? 'text-[var(--alert-green)]' : 'text-[var(--alert-red)]'}>{backendStatus.toUpperCase()}</span></span>
-
-        {spaceWeather && <span className="hidden lg:inline">SOLAR: <span style={{ color: spaceWeather.storm_color, fontWeight: 700 }}>Kp{spaceWeather.kp_index}</span></span>}
-
-        <span className="hidden lg:inline-flex items-center gap-1">
-          <span className="text-[var(--cyan-primary)] font-bold">{Object.values(activeLayers).filter(Boolean).length}</span>
-          <span className="text-[var(--text-muted)]/60">FEEDS</span>
-        </span>
-
-        <UptimeClock />
-        <span className="text-[10px] font-bold tracking-[0.2em] text-[var(--text-muted)] opacity-50 ml-2">V.4.1</span>
-      </motion.div>
+      </motion.header>
 
       {/* ── MOBILE: Compact top status ── */}
       {isMobile && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.5 }} className="absolute top-3 right-3 z-[200] pointer-events-auto flex items-center gap-2">
           <a href='https://ko-fi.com/M8D41ZYW4Z' target='_blank' className="glass-panel px-2 py-1 flex items-center gap-1.5 text-[7px] font-mono tracking-widest hover:opacity-80 transition-opacity border-[var(--gold-primary)]/40 bg-[var(--gold-primary)]/10">
-            <div className="w-1 h-1 rounded-full bg-[var(--gold-primary)] animate-osiris-pulse" />
+
           </a>
         </motion.div>
       )}
