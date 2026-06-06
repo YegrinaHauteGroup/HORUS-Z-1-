@@ -20,10 +20,6 @@ const OsirisMap = dynamic(() => import('@/components/OsirisMap'), { ssr: false }
 const LayerPanel = dynamic(() => import('@/components/LayerPanel'));
 const CameraViewer = dynamic(() => import('@/components/CameraViewer'));
 const OsintPanel = dynamic(() => import('@/components/OsintPanel'));
-const [showSplash, setShowSplash] = useState(true);
-const [adminCode, setAdminCode] = useState('');
-const [error, setError] = useState(false);
-const [isLoading, setIsLoading] = useState(false);
 
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
@@ -100,6 +96,9 @@ export default function Dashboard() {
   const [regionDossier, setRegionDossier] = useState<any>(null);
   const [dossierLoading, setDossierLoading] = useState(false);
   const [showSplash, setShowSplash] = useState(true);
+  const [adminCode, setAdminCode] = useState('');
+  const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [activeCamera, setActiveCamera] = useState<any>(null);
   const [spaceWeather, setSpaceWeather] = useState<any>(null);
   const [showLayers, setShowLayers] = useState(true);
