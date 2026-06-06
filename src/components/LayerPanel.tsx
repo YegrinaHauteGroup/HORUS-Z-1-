@@ -208,13 +208,7 @@ function LayerPanel({ data, activeLayers, setActiveLayers, isMobile, onSearch, o
                   opacity: isActive || isHovered ? 1 : 0.5,
                 }}
               >
-                {/* Active Indicator dot */}
-                {isActive && (
-                  <div 
-                    className="absolute -left-1 w-1 h-1 rounded-full animate-pulse"
-                    style={{ backgroundColor: group.color, boxShadow: `0 0 8px ${group.color}` }}
-                  />
-                )}
+                
                 {group.label}
               </div>
 
