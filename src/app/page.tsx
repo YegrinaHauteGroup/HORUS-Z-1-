@@ -573,8 +573,8 @@ export default function Dashboard() {
                 transition={{ delay: 1.2, duration: 0.8, ease: 'easeInOut' }}
                 className="overflow-hidden whitespace-nowrap"
               >
-                <p className="text-[10px] md:text-[10px] font-mono tracking-[0.5em] text-gray-400" style={{ opacity: 0.8 }}>
-                  GLOBAL OPERATING SYSTEM, POWERED BY YEGRINA HAUTE GROUP
+                <p className="text-[7px] md:text-[10px] font-mono tracking-[0.5em] text-gray-400" style={{ opacity: 0.8 }}>
+                  POWERED BY YEGRINA HAUTE GROUP
                 </p>
               </motion.div>
             </div>
@@ -596,7 +596,7 @@ export default function Dashboard() {
               {/* Status messages — cycling */}
               <div className="mt-3 h-4 flex items-center justify-center">
                 {[
-                  { text: 'ESTABLISHING SECURE CONNECTION...', delay: 0.5 },
+                  { text: 'ESTABLISHING SECURE CONNECTION...', delay: 1.1 },
                   { text: 'INITIALIZING FEEDS...', delay: 1.1 },
                   { text: 'CALIBRATING SENSORS...', delay: 1.7 },
                   { text: 'SYSTEM READY', delay: 2.2 },
@@ -660,9 +660,9 @@ export default function Dashboard() {
           title={mapProjection === 'globe' ? 'Switch to 2D Map' : 'Switch to 3D Globe'}
         >
           {mapProjection === 'globe' ? (
-            <MapPinned className="w-5 h-5 text-[var(--gold-primary)] group-hover:scale-110 transition-transform" />
+            <MapPinned className="w-5 h-5 text-grey-300 group-hover:scale-110 transition-transform" />
           ) : (
-            <Globe className="w-5 h-5 text-[var(--cyan-primary)] group-hover:scale-110 transition-transform" />
+            <Globe className="w-5 h-5 text-grey-300 group-hover:scale-110 transition-transform" />
           )}
           <span className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 text-[9px] font-mono text-[var(--text-muted)] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity glass-panel px-2 py-1 z-[300]">
             {mapProjection === 'globe' ? '2D MAP' : '3D GLOBE'}
@@ -676,9 +676,9 @@ export default function Dashboard() {
           title={mapStyle === 'dark' ? 'Satellite View' : 'Night View'}
         >
           {mapStyle === 'dark' ? (
-            <Satellite className="w-5 h-5 text-[var(--alert-green)] group-hover:scale-110 transition-transform" />
+            <Satellite className="w-5 h-5 text-grey-300 group-hover:scale-110 transition-transform" />
           ) : (
-            <Moon className="w-5 h-5 text-[var(--cyan-primary)] group-hover:scale-110 transition-transform" />
+            <Moon className="w-5 h-5 text-grey-300 group-hover:scale-110 transition-transform" />
           )}
           <span className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 text-[9px] font-mono text-[var(--text-muted)] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity glass-panel px-2 py-1 z-[300]">
             {mapStyle === 'dark' ? 'SATELLITE' : 'NIGHT MODE'}
