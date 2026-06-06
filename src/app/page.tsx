@@ -653,19 +653,19 @@ export default function Dashboard() {
   initial={{ opacity: 0, y: -20 }} 
   animate={{ opacity: 1, y: 0 }} 
   transition={{ duration: 0.8 }}
-  className="fixed top-0 left-0 w-full z-[200] bg-black/90 backdrop-blur-md border-b border-gray-800 px-4 md:px-6 py-3 flex items-center justify-between"
+  className="fixed top-0 left-0 w-full z-[200] bg-black/90 backdrop-blur-md border-b border-gray-800 px-4 md:px-6 py-3 grid grid-cols-[1fr_auto_1fr] items-center"
 >
   {/* Left: Logo & Branding */}
-  <div className="flex items-center gap-2">
-    <img src="/hautegroup.png" alt="Yegrina Logo" className="w-7 h-7 object-contain" />
+  <div className="flex items-center gap-2 overflow-hidden">
+    <img src="/hautegroup.png" alt="Yegrina Logo" className="w-7 h-7 object-contain shrink-0" />
     <div className="hidden md:flex items-baseline gap-2">
       <h1 className="text-xl font-light tracking-wider text-white font-['Inter'] leading-none">HORUS</h1>
       <span className="text-xs text-gray-400 font-['Inter'] tracking-widest uppercase leading-none">GLOBAL OPERATING SYSTEM</span>
     </div>
   </div>
 
-  {/* Center: Controls (절대 위치로 중앙 배치) */}
-  <div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-1 md:gap-3">
+  {/* Center: Controls (자동 중앙 정렬) */}
+  <div className="flex items-center gap-1 md:gap-3 px-2">
     <button 
       onClick={() => setMapProjection(p => p === 'globe' ? 'mercator' : 'globe')}
       className="px-3 md:px-4 py-1.5 text-[10px] md:text-[11px] font-medium text-gray-300 hover:text-white bg-white/5 border border-white/10 rounded-full transition-all hover:bg-white/10 whitespace-nowrap"
@@ -682,9 +682,8 @@ export default function Dashboard() {
     </button>
   </div>
 
-  {/* Right: Status Bar */}
-  <div className="flex items-center gap-3 md:gap-6 text-[10px] md:text-[11px] font-mono tracking-widest text-gray-300">
-    {/* 데스크탑에서만 보여질 상세 정보 */}
+  {/* Right: Status Bar (우측 정렬) */}
+  <div className="flex items-center justify-end gap-3 md:gap-6 text-[10px] md:text-[11px] font-mono tracking-widest text-gray-300">
     <div className="hidden lg:flex items-center gap-6">
       <ZuluClock />
       <span className="flex items-center gap-1.5">
@@ -701,10 +700,9 @@ export default function Dashboard() {
       </span>
     </div>
     
-    {/* 항상 노출되는 시계 및 링크 */}
     <UptimeClock />
-    <a href='https://ko-fi.com/M8D41ZYW4Z' target='_blank' className="text-gray-500 hover:text-white transition-colors">
-       {/* Ko-fi 아이콘이나 링크 */}
+    {/* 2. URL 변경 부분: 아래 href 주소를 원하는 곳으로 수정하세요 */}
+    <a href='https://www.officialyegrina.com' target='_blank' className="text-gray-500 hover:text-white transition-colors">
        <span className="hidden md:inline">SUPPORT</span>
     </a>
   </div>
