@@ -538,94 +538,27 @@ export default function Dashboard() {
               animation: 'splashScanDrift 8s linear infinite',
             }} />
 
-            {/* ── V4.2 badge — top-left ── */}
+            {/* ── V1.1 badge — top-left ── */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.6 }}
               transition={{ delay: 0.8, duration: 0.5 }}
-              className="absolute top-6 left-6 z-[2] font-mono text-[10px] tracking-[0.3em] text-[var(--gold-primary)]"
+              className="absolute top-6 left-6 z-[2] font-mono text-[10px] tracking-[0.3em] text-gray-300"
             >
-              V4.2
+              V1.1
             </motion.div>
 
-
-
-            {/* ── Geometric tactical logo ── */}
-            <div className="relative w-40 h-40 mb-8 flex items-center justify-center z-[2]">
-              {/* Outer ring — slow clockwise */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.6, rotate: 0 }}
-                animate={{ opacity: 1, scale: 1, rotate: 360 }}
-                transition={{ opacity: { duration: 0.6 }, scale: { duration: 0.8, ease: 'easeOut' }, rotate: { duration: 20, repeat: Infinity, ease: 'linear' } }}
-                className="absolute inset-0 rounded-full"
-                style={{ border: '1px solid rgba(212,175,55,0.2)' }}
-              >
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full" style={{ background: 'var(--gold-primary)', boxShadow: '0 0 12px var(--gold-primary), 0 0 24px rgba(212,175,55,0.3)' }} />
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-1 h-1 rounded-full" style={{ background: 'rgba(212,175,55,0.5)', boxShadow: '0 0 6px rgba(212,175,55,0.3)' }} />
-              </motion.div>
-
-              {/* Middle ring — faster counter-clockwise */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.4, rotate: 0 }}
-                animate={{ opacity: 1, scale: 1, rotate: -360 }}
-                transition={{ opacity: { duration: 0.6, delay: 0.15 }, scale: { duration: 0.8, delay: 0.15, ease: 'easeOut' }, rotate: { duration: 12, repeat: Infinity, ease: 'linear' } }}
-                className="absolute rounded-full"
-                style={{ inset: '18px', border: '1px solid rgba(0,229,255,0.15)' }}
-              >
-                <div className="absolute top-1/2 right-0 translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full" style={{ background: 'var(--cyan-primary)', boxShadow: '0 0 10px var(--cyan-primary), 0 0 20px rgba(0,229,255,0.2)' }} />
-                <div className="absolute bottom-0 left-1/4 translate-y-1/2 w-1 h-1 rounded-full" style={{ background: 'rgba(0,229,255,0.4)' }} />
-              </motion.div>
-
-              {/* Inner ring — fastest clockwise */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.2, rotate: 0 }}
-                animate={{ opacity: 1, scale: 1, rotate: 360 }}
-                transition={{ opacity: { duration: 0.6, delay: 0.3 }, scale: { duration: 0.8, delay: 0.3, ease: 'easeOut' }, rotate: { duration: 7, repeat: Infinity, ease: 'linear' } }}
-                className="absolute rounded-full"
-                style={{ inset: '40px', border: '1px solid rgba(212,175,55,0.25)' }}
-              >
-                <div className="absolute top-0 left-1/4 -translate-y-1/2 w-1.5 h-1.5 rounded-full" style={{ background: 'var(--gold-primary)', boxShadow: '0 0 8px var(--gold-primary)' }} />
-              </motion.div>
-
-              {/* Core circle + crosshair */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.4, duration: 0.6, ease: [0.34, 1.56, 0.64, 1] }}
-                className="relative w-12 h-12 rounded-full flex items-center justify-center"
-                style={{ border: '2px solid var(--gold-primary)', boxShadow: '0 0 20px rgba(212,175,55,0.15), inset 0 0 20px rgba(212,175,55,0.05)' }}
-              >
-                <motion.div
-                  animate={{ opacity: [0.3, 0.8, 0.3] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-                  className="w-5 h-5 rounded-full"
-                  style={{ background: 'radial-gradient(circle, rgba(212,175,55,0.4) 0%, rgba(212,175,55,0.05) 70%)' }}
-                />
-                {/* Crosshair lines */}
-                <div className="absolute w-[1px] h-full" style={{ background: 'linear-gradient(to bottom, transparent, rgba(212,175,55,0.3), transparent)' }} />
-                <div className="absolute w-full h-[1px]" style={{ background: 'linear-gradient(to right, transparent, rgba(212,175,55,0.3), transparent)' }} />
-              </motion.div>
-
-              {/* Faint pulsing radar sweep */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: [0, 0.15, 0], rotate: [0, 360] }}
-                transition={{ opacity: { duration: 3, repeat: Infinity }, rotate: { duration: 3, repeat: Infinity, ease: 'linear' }, delay: 0.6 }}
-                className="absolute inset-[10px] rounded-full"
-                style={{ background: 'conic-gradient(from 0deg, transparent 0deg, rgba(212,175,55,0.15) 40deg, transparent 80deg)' }}
-              />
-            </div>
-
-            {/* ── OSIRIS title — letter-by-letter stagger ── */}
-            <div className="flex items-center gap-[2px] mb-3 z-[2]">
+        
+            {/* ── HORUS title — letter-by-letter stagger ── */}
+            <div className="flex items-center gap-[0px] mb-3 z-[2]">
               {'HORUS'.split('').map((letter, i) => (
                 <motion.span
                   key={i}
                   initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }}
                   animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                  transition={{ delay: 0.5 + i * 0.08, duration: 0.5, ease: 'easeOut' }}
-                  className="text-4xl md:text-5xl font-bold tracking-[0.5em] font-mono"
-                  style={{ color: 'var(--text-heading)', textShadow: '0 0 30px rgba(212,175,55,0.2)' }}
+                  transition={{ delay: 0.5 + i * 0.08, duration: 0.8, ease: 'easeOut' }}
+                  className="text-4xl md:text-5xl font-medium tracking-[0.5em] font-mono"
+                  style={{ color: 'var(--text-heading)', textShadow: '0 0 30px rgba(255, 255, 255, 0.2)' }}
                 >
                   {letter}
                 </motion.span>
@@ -640,8 +573,8 @@ export default function Dashboard() {
                 transition={{ delay: 1.2, duration: 0.8, ease: 'easeInOut' }}
                 className="overflow-hidden whitespace-nowrap"
               >
-                <p className="text-[10px] md:text-[11px] font-mono tracking-[0.5em] text-[var(--gold-primary)]" style={{ opacity: 0.8 }}>
-                  GLOBAL INTELLIGENCE PLATFORM
+                <p className="text-[7px] md:text-[10px] font-mono tracking-[0.5em] text-gray-400" style={{ opacity: 0.8 }}>
+                  POWERED BY YEGRINA HAUTE GROUP
                 </p>
               </motion.div>
             </div>
@@ -655,14 +588,15 @@ export default function Dashboard() {
                   animate={{ width: ['0%', '25%', '50%', '78%', '100%'] }}
                   transition={{ duration: 2.2, delay: 0.5, times: [0, 0.25, 0.5, 0.75, 1], ease: 'easeInOut' }}
                   className="absolute inset-y-0 left-0 rounded-full"
-                  style={{ background: 'linear-gradient(90deg, var(--gold-primary), var(--cyan-primary), var(--gold-primary))', boxShadow: '0 0 12px rgba(212,175,55,0.4)' }}
+                  style={{ background: 'linear-gradient(90deg, #9ca3af, #f7f7f7, #9ca3af)', 
+                    boxShadow: '0 0 12px rgba(0, 0, 0, 0.81)' }}
                 />
               </div>
 
               {/* Status messages — cycling */}
               <div className="mt-3 h-4 flex items-center justify-center">
                 {[
-                  { text: 'ESTABLISHING SECURE CONNECTION...', delay: 0.5 },
+                  { text: 'ESTABLISHING SECURE CONNECTION...', delay: 1.1 },
                   { text: 'INITIALIZING FEEDS...', delay: 1.1 },
                   { text: 'CALIBRATING SENSORS...', delay: 1.7 },
                   { text: 'SYSTEM READY', delay: 2.2 },
@@ -681,30 +615,9 @@ export default function Dashboard() {
               </div>
             </div>
 
-            {/* ── Decorative grid lines ── */}
-            <div className="absolute inset-0 pointer-events-none z-[0]" style={{ opacity: 0.03 }}>
-              <div className="absolute inset-0" style={{
-                backgroundImage: 'linear-gradient(rgba(212,175,55,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.5) 1px, transparent 1px)',
-                backgroundSize: '60px 60px',
-              }} />
-            </div>
+            
 
-            {/* ── Corner frame accents ── */}
-            {[
-              { t: '10px', l: '10px', bw: '2px 0 0 2px' },
-              { t: '10px', r: '10px', bw: '2px 2px 0 0' },
-              { b: '10px', l: '10px', bw: '0 0 2px 2px' },
-              { b: '10px', r: '10px', bw: '0 2px 2px 0' },
-            ].map((pos, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 0.3 }}
-                transition={{ delay: 0.8 + i * 0.1, duration: 0.5 }}
-                className="absolute w-8 h-8 z-[2]"
-                style={{ top: pos.t, bottom: pos.b, left: pos.l, right: pos.r, borderWidth: pos.bw, borderStyle: 'solid', borderColor: 'var(--gold-primary)' }}
-              />
-            ))}
+            
 
 
 
@@ -747,9 +660,9 @@ export default function Dashboard() {
           title={mapProjection === 'globe' ? 'Switch to 2D Map' : 'Switch to 3D Globe'}
         >
           {mapProjection === 'globe' ? (
-            <MapPinned className="w-5 h-5 text-[var(--gold-primary)] group-hover:scale-110 transition-transform" />
+            <MapPinned className="w-5 h-5 text-grey-300 group-hover:scale-110 transition-transform" />
           ) : (
-            <Globe className="w-5 h-5 text-[var(--cyan-primary)] group-hover:scale-110 transition-transform" />
+            <Globe className="w-5 h-5 text-grey-300 group-hover:scale-110 transition-transform" />
           )}
           <span className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 text-[9px] font-mono text-[var(--text-muted)] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity glass-panel px-2 py-1 z-[300]">
             {mapProjection === 'globe' ? '2D MAP' : '3D GLOBE'}
@@ -763,9 +676,9 @@ export default function Dashboard() {
           title={mapStyle === 'dark' ? 'Satellite View' : 'Night View'}
         >
           {mapStyle === 'dark' ? (
-            <Satellite className="w-5 h-5 text-[var(--alert-green)] group-hover:scale-110 transition-transform" />
+            <Satellite className="w-5 h-5 text-grey-300 group-hover:scale-110 transition-transform" />
           ) : (
-            <Moon className="w-5 h-5 text-[var(--cyan-primary)] group-hover:scale-110 transition-transform" />
+            <Moon className="w-5 h-5 text-grey-300 group-hover:scale-110 transition-transform" />
           )}
           <span className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 text-[9px] font-mono text-[var(--text-muted)] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity glass-panel px-2 py-1 z-[300]">
             {mapStyle === 'dark' ? 'SATELLITE' : 'NIGHT MODE'}
@@ -777,11 +690,11 @@ export default function Dashboard() {
       {/* ── HEADER ── */}
       <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 2.5 }} className={`absolute top-4 left-6 z-[200] pointer-events-none flex flex-col`}>
         <div className="flex items-baseline gap-2">
-          <h1 className="text-xl font-bold tracking-[0.4em] text-[var(--gold-primary)] font-mono">HORUS</h1>
-          <span className="text-[10px] text-[var(--text-muted)] font-mono tracking-[0.15em] opacity-80">GLOBAL INTELLIGENCE COMMAND</span>
+          <h1 className="text-xl font-medium tracking-[0.4em] text-gray-300 font-mono">HORUS</h1>
+          <span className="text-[10px] text-[var(--text-muted)] font-mono tracking-[0.15em] opacity-80">GLOBAL OPERATING SYSTEM</span>
         </div>
         <div className="flex items-center gap-4 mt-1">
-          <span className="text-[5px] text-[var(--text-muted)] font-mono tracking-[0.3em] uppercase opacity-40">
+          <span className="text-[5px] text-gray-300 font-mono tracking-[0.3em] uppercase opacity-80">
             POWERED BY YEGRINA HAUTE GROUP · C2 ENGINE: PHYSICAL COMMAND CORE · SENSORS: ORBITAL LATTICE · NET: LYCAN NETWORK
           </span>
         </div>
@@ -812,7 +725,6 @@ export default function Dashboard() {
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.5 }} className="absolute top-3 right-3 z-[200] pointer-events-auto flex items-center gap-2">
           <a href='https://ko-fi.com/M8D41ZYW4Z' target='_blank' className="glass-panel px-2 py-1 flex items-center gap-1.5 text-[7px] font-mono tracking-widest hover:opacity-80 transition-opacity border-[var(--gold-primary)]/40 bg-[var(--gold-primary)]/10">
             <div className="w-1 h-1 rounded-full bg-[var(--gold-primary)] animate-osiris-pulse" />
-            <span className="text-[var(--gold-primary)] font-bold">SUPPORT PROJECT</span>
           </a>
         </motion.div>
       )}
