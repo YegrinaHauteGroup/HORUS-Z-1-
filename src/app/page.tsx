@@ -695,11 +695,11 @@ export default function Dashboard() {
         className="fixed top-0 left-0 w-full z-[200] bg-black/90 backdrop-blur-md border-b border-gray-800 px-6 py-3 flex items-center justify-between"
       >
         {/* Left: Logo & Branding */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-1.5">
           <img src="/hautegroup.png"  alt="Yegrina Logo" className="w-8 h-8 object-contain" />
-          <div className="flex items-baseline gap-3">
-            <h1 className="text-2xl font-bold tracking-wider text-white font-['Inter']">HORUS</h1>
-            <span className="text-xs text-gray-400 font-['Inter'] tracking-widest uppercase">GLOBAL OPERATING SYSTEM</span>
+          <div className="flex items-baseline gap-1.5">
+            <h1 className="text-xl font-light tracking-wider text-white font-['Inter'] leading-none">HORUS</h1>
+            <span className="text-xs text-gray-400 font-['Inter'] tracking-widest uppercase leading-none">GLOBAL OPERATING SYSTEM</span>
           </div>
         </div>
 
