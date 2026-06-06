@@ -541,12 +541,13 @@ export default function Dashboard() {
             {!isLoading ? (
               <div className="flex flex-col items-center w-64 space-y-4">
                 <input
-                  type="text"
-                  placeholder="Administer Code"
-                  value={adminCode}
-                  onChange={(e) => { setAdminCode(e.target.value); setError(false); }}
-                  className="w-full bg-transparent border-b border-gray-800 text-center text-white placeholder-gray-700 focus:outline-none focus:border-white transition-colors pb-2 font-mono text-sm"
-                />
+  type="text"
+  placeholder="Administer Code"
+  value={adminCode}
+  onChange={(e) => { setAdminCode(e.target.value); setError(false); }}
+  // text-sm -> text-base (16px)로 변경하여 아이폰 확대 버그 해결
+  className="w-full bg-transparent border-b border-gray-800 text-center text-white placeholder-gray-700 focus:outline-none focus:border-white transition-colors pb-2 font-mono text-base"
+/>
                 <button
                   onClick={() => {
                     const regex = /^yhg-22-(\d{4})$/;
@@ -614,13 +615,14 @@ export default function Dashboard() {
   className="fixed top-0 left-0 w-full z-[200] bg-black/90 backdrop-blur-md border-b border-gray-800 px-4 md:px-6 py-3 grid grid-cols-[1fr_auto_1fr] items-center"
 >
   {/* Left: Logo & Branding */}
-  <div className="flex items-center gap-2 overflow-hidden">
-    <img src="/hautegroup.png" alt="Yegrina Logo" className="w-7 h-7 object-contain shrink-0" />
-    <div className="hidden md:flex items-baseline gap-2">
-      <h1 className="text-xl font-light tracking-wider text-white font-['Inter'] leading-none">HORUS</h1>
-      <span className="text-xs text-gray-400 font-['Inter'] tracking-widest uppercase leading-none">GLOBAL OPERATING SYSTEM</span>
-    </div>
+<div className="flex items-center gap-2 overflow-hidden">
+  <img src="/hautegroup.png" alt="Yegrina Logo" className="w-7 h-7 object-contain shrink-0" />
+  {/* hidden 제거 및 md 이상에서만 Subtitle이 보이도록 설정 */}
+  <div className="flex items-baseline gap-2">
+    <h1 className="text-lg md:text-xl font-light tracking-wider text-white font-['Inter'] leading-none">HORUS</h1>
+    <span className="hidden md:block text-xs text-gray-400 font-['Inter'] tracking-widest uppercase leading-none">GLOBAL OPERATING SYSTEM</span>
   </div>
+</div>
 
   {/* Center: Controls (자동 중앙 정렬) */}
   <div className="flex items-center gap-1 md:gap-3 px-2">
@@ -667,13 +669,13 @@ export default function Dashboard() {
 </motion.header>
 
       {/* ── MOBILE: Compact top status ── */}
-      {isMobile && (
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.5 }} className="absolute top-3 right-3 z-[200] pointer-events-auto flex items-center gap-2">
-          <a href='https://ko-fi.com/M8D41ZYW4Z' target='_blank' className="glass-panel px-2 py-1 flex items-center gap-1.5 text-[7px] font-mono tracking-widest hover:opacity-80 transition-opacity border-[var(--gold-primary)]/40 bg-[var(--gold-primary)]/10">
-
-          </a>
-        </motion.div>
-      )}
+{isMobile && (
+  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.5 }} className="absolute top-3 right-3 z-[200] pointer-events-auto flex items-center gap-2">
+    <a href='https://www.officialyegrina.com' target='_blank' className="glass-panel px-3 py-1.5 flex items-center gap-1.5 text-[10px] font-mono tracking-widest hover:opacity-80 transition-opacity border-[var(--gold-primary)]/40 bg-[var(--gold-primary)]/10 text-[var(--gold-primary)]">
+      SUPPORT
+    </a>
+  </motion.div>
+)}
 
 
 
