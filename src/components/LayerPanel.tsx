@@ -18,7 +18,7 @@ interface LayerPanelProps {
 const LAYER_GROUPS = [
   {
     label: 'SDK',
-    fullLabel: 'OSIRIS SDK',
+    fullLabel: 'HORUS SDK',
     color: '#1565C0',
     layers: [
       { key: 'sdk_sea', label: 'Maritime Lines', icon: Anchor, color: '#4FC3F7', dataKey: 'sdk_entities' },
@@ -232,40 +232,42 @@ function LayerPanel({ data, activeLayers, setActiveLayers, isMobile }: LayerPane
                     <div className="text-[11px] font-bold font-mono mb-3 tracking-widest border-b border-white/10 pb-2" style={{ color: group.color }}>
                       {group.fullLabel}
                     </div>
-                    <div className="flex flex-col gap-1.5">
-                      {group.layers.map((layer) => {
-                        const isLayerActive = activeLayers[layer.key];
-                        const count = getCount(layer.dataKey);
-                        const Icon = layer.icon || Shield;
-                        
-                        return (
-                          <button
-                            key={layer.key}
-                            onClick={() => {
-                              if (layer.key === 'sdk_ransomware') {
-                                alert('Ransomware Feed - Coming Soon');
-                              } else {
-                                toggle(layer.key);
-                              }
-                            }}
-                            className="w-full flex items-center gap-3 px-2 py-1.5 rounded bg-transparent hover:bg-white/5 transition-colors group"
-                          >
-                            <div 
-                              className={`w-2 h-2 rounded-full border flex-shrink-0 transition-all duration-300 ${isLayerActive ? 'bg-current border-current scale-100' : 'bg-transparent border-white/30 scale-75'}`}
-                              style={{ color: isLayerActive ? layer.color : 'inherit', boxShadow: isLayerActive ? `0 0 8px ${layer.color}` : 'none' }}
-                            />
-                            <span className={`text-[11px] font-mono uppercase tracking-wider flex-1 text-left transition-colors duration-200 ${isLayerActive ? 'text-white' : 'text-white/50 group-hover:text-white/80'}`}>
-                              {layer.label}
-                            </span>
-                            {count !== null && (
-                              <span className="text-[9px] font-mono tabular-nums opacity-60">
-                                {count.toLocaleString()}
-                              </span>
-                            )}
-                          </button>
-                        );
-                      })}
-                    </div>
+                    <div className="flex flex-col gap-2">
+  {group.layers.map((layer) => {
+    const isLayerActive = activeLayers[layer.key];
+    const count = getCount(layer.dataKey);
+    
+    return (
+      <button
+        key={layer.key}
+        onClick={() => {
+          if (layer.key === 'sdk_ransomware') {
+            alert('Ransomware Feed - Coming Soon');
+          } else {
+            toggle(layer.key);
+          }
+        }}
+        /* 직사각형 테두리 적용, 점(dot) 제거, 상태에 따른 테두리 색상 변화 */
+        className={`w-full flex items-center justify-between px-3 py-2 rounded-md border transition-all duration-200 ${
+          isLayerActive 
+            ? 'bg-white/5 border-white/30' 
+            : 'bg-black/20 border-white/10 hover:border-white/20'
+        }`}
+      >
+        <span className={`text-[10px] font-mono uppercase tracking-wider text-left transition-colors duration-200 ${
+          isLayerActive ? 'text-white' : 'text-white/50'
+        }`}>
+          {layer.label}
+        </span>
+        {count !== null && (
+          <span className="text-[9px] font-mono tabular-nums opacity-60 text-white/50">
+            {count.toLocaleString()}
+          </span>
+        )}
+      </button>
+    );
+  })}
+</div>
                   </motion.div>
                 )}
               </AnimatePresence>
