@@ -655,39 +655,57 @@ export default function Dashboard() {
   transition={{ duration: 0.8 }}
   className="fixed top-0 left-0 w-full z-[200] bg-black/90 backdrop-blur-md border-b border-gray-800 px-4 md:px-6 py-3 flex items-center justify-between"
 >
-  {/* Left: Logo */}
+  {/* Left: Logo & Branding */}
   <div className="flex items-center gap-2">
     <img src="/hautegroup.png" alt="Yegrina Logo" className="w-7 h-7 object-contain" />
-    {/* 모바일에서는 'HORUS'만, 데스크탑에서 전체 이름 노출 */}
     <div className="hidden md:flex items-baseline gap-2">
-      <h1 className="text-xl font-medium tracking-wider text-white font-['Inter'] leading-none">HORUS</h1>
+      <h1 className="text-xl font-light tracking-wider text-white font-['Inter'] leading-none">HORUS</h1>
       <span className="text-xs text-gray-400 font-['Inter'] tracking-widest uppercase leading-none">GLOBAL OPERATING SYSTEM</span>
     </div>
   </div>
 
-  {/* Center: Controls (Responsive) */}
+  {/* Center: Controls (절대 위치로 중앙 배치) */}
   <div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-1 md:gap-3">
     <button 
       onClick={() => setMapProjection(p => p === 'globe' ? 'mercator' : 'globe')}
-      className="px-2 md:px-4 py-1.5 text-[9px] md:text-[11px] font-medium text-gray-300 hover:text-white bg-white/5 border border-white/10 rounded-full transition-all hover:bg-white/10 whitespace-nowrap"
+      className="px-3 md:px-4 py-1.5 text-[10px] md:text-[11px] font-medium text-gray-300 hover:text-white bg-white/5 border border-white/10 rounded-full transition-all hover:bg-white/10 whitespace-nowrap"
     >
       <span className="hidden md:inline">2D/3D Conversion</span>
-      <span className="md:hidden">3D</span> {/* 모바일 축약 */}
+      <span className="md:hidden">3D</span>
     </button>
     <button 
       onClick={() => setMapStyle(s => s === 'dark' ? 'satellite' : 'dark')}
-      className="px-2 md:px-4 py-1.5 text-[9px] md:text-[11px] font-medium text-gray-300 hover:text-white bg-white/5 border border-white/10 rounded-full transition-all hover:bg-white/10 whitespace-nowrap"
+      className="px-3 md:px-4 py-1.5 text-[10px] md:text-[11px] font-medium text-gray-300 hover:text-white bg-white/5 border border-white/10 rounded-full transition-all hover:bg-white/10 whitespace-nowrap"
     >
       <span className="hidden md:inline">Satellite/Map View</span>
-      <span className="md:hidden">Map</span> {/* 모바일 축약 */}
+      <span className="md:hidden">Map</span>
     </button>
   </div>
 
-  {/* Right: Status (Hide on mobile if space is too tight) */}
-  <div className="hidden md:flex w-8 justify-end">
-    {/* 데스크탑에서만 Ko-fi 노출 권장 */}
+  {/* Right: Status Bar */}
+  <div className="flex items-center gap-3 md:gap-6 text-[10px] md:text-[11px] font-mono tracking-widest text-gray-300">
+    {/* 데스크탑에서만 보여질 상세 정보 */}
+    <div className="hidden lg:flex items-center gap-6">
+      <ZuluClock />
+      <span className="flex items-center gap-1.5">
+        SYS: <span className={backendStatus === 'connected' ? 'text-green-500' : 'text-red-500'}>{backendStatus.toUpperCase()}</span>
+      </span>
+      {spaceWeather && (
+        <span>
+          SOLAR: <span style={{ color: spaceWeather.storm_color, fontWeight: 700 }}>Kp{spaceWeather.kp_index}</span>
+        </span>
+      )}
+      <span className="flex items-center gap-1">
+        <span className="text-blue-400 font-bold">{Object.values(activeLayers).filter(Boolean).length}</span>
+        <span className="text-gray-400">FEEDS</span>
+      </span>
+    </div>
+    
+    {/* 항상 노출되는 시계 및 링크 */}
+    <UptimeClock />
     <a href='https://ko-fi.com/M8D41ZYW4Z' target='_blank' className="text-gray-500 hover:text-white transition-colors">
-       {/* 여기에 작은 아이콘 추가 가능 */}
+       {/* Ko-fi 아이콘이나 링크 */}
+       <span className="hidden md:inline">SUPPORT</span>
     </a>
   </div>
 </motion.header>
