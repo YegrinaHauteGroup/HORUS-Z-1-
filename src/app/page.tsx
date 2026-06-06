@@ -648,81 +648,65 @@ export default function Dashboard() {
       </ErrorBoundary>
 
 
-      {/* ── MAP VIEW CONTROLS (3D/2D + SATELLITE TOGGLE) ── */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 3.5 }}
-        className="absolute bottom-[75px] md:bottom-6 left-3 md:left-[315px] z-[200] flex items-center gap-2 pointer-events-none"
-      >
-        {/* 3D/2D Toggle */}
-        <button
-          onClick={() => setMapProjection(p => p === 'globe' ? 'mercator' : 'globe')}
-          className="glass-panel p-3.5 pointer-events-auto hover:border-[var(--gold-primary)]/40 transition-colors group relative"
-          title={mapProjection === 'globe' ? 'Switch to 2D Map' : 'Switch to 3D Globe'}
-        >
-          {mapProjection === 'globe' ? (
-            <MapPinned className="w-5 h-5 text-grey-300 group-hover:scale-110 transition-transform" />
-          ) : (
-            <Globe className="w-5 h-5 text-grey-300 group-hover:scale-110 transition-transform" />
-          )}
-          <span className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 text-[9px] font-mono text-[var(--text-muted)] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity glass-panel px-2 py-1 z-[300]">
-            {mapProjection === 'globe' ? '2D MAP' : '3D GLOBE'}
-          </span>
-        </button>
-
-        {/* Map Style Toggle */}
-        <button
-          onClick={() => setMapStyle(s => s === 'dark' ? 'satellite' : 'dark')}
-          className="glass-panel p-3.5 pointer-events-auto hover:border-[var(--gold-primary)]/40 transition-colors group relative"
-          title={mapStyle === 'dark' ? 'Satellite View' : 'Night View'}
-        >
-          {mapStyle === 'dark' ? (
-            <Satellite className="w-5 h-5 text-grey-300 group-hover:scale-110 transition-transform" />
-          ) : (
-            <Moon className="w-5 h-5 text-grey-300 group-hover:scale-110 transition-transform" />
-          )}
-          <span className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 text-[9px] font-mono text-[var(--text-muted)] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity glass-panel px-2 py-1 z-[300]">
-            {mapStyle === 'dark' ? 'SATELLITE' : 'NIGHT MODE'}
-          </span>
-        </button>
-
-      </motion.div>
-
       {/* ── NEW CLEAN HEADER ── */}
       <motion.header 
-        initial={{ opacity: 0, y: -20 }} 
-        animate={{ opacity: 1, y: 0 }} 
-        transition={{ duration: 0.8 }}
-        className="fixed top-0 left-0 w-full z-[200] bg-black/90 backdrop-blur-md border-b border-gray-800 px-6 py-3 flex items-center justify-between"
-      >
-        {/* Left: Logo & Branding */}
-        <div className="flex items-center gap-1.5">
-          <img src="/hautegroup.png"  alt="Yegrina Logo" className="w-8 h-8 object-contain" />
-          <div className="flex items-baseline gap-1.5">
-            <h1 className="text-xl font-light tracking-wider text-white font-['Inter'] leading-none">HORUS</h1>
-            <span className="text-xs text-gray-400 font-['Inter'] tracking-widest uppercase leading-none">GLOBAL OPERATING SYSTEM</span>
-          </div>
-        </div>
+  initial={{ opacity: 0, y: -20 }} 
+  animate={{ opacity: 1, y: 0 }} 
+  transition={{ duration: 0.8 }}
+  className="fixed top-0 left-0 w-full z-[200] bg-black/90 backdrop-blur-md border-b border-gray-800 px-4 md:px-6 py-3 grid grid-cols-[1fr_auto_1fr] items-center"
+>
+  {/* Left: Logo & Branding */}
+  <div className="flex items-center gap-2 overflow-hidden">
+    <img src="/hautegroup.png" alt="Yegrina Logo" className="w-7 h-7 object-contain shrink-0" />
+    <div className="hidden md:flex items-baseline gap-2">
+      <h1 className="text-xl font-light tracking-wider text-white font-['Inter'] leading-none">HORUS</h1>
+      <span className="text-xs text-gray-400 font-['Inter'] tracking-widest uppercase leading-none">GLOBAL OPERATING SYSTEM</span>
+    </div>
+  </div>
 
-        {/* Right: Status Bar */}
-        <div className="flex items-center gap-6 text-[11px] font-mono tracking-widest text-gray-300">
-           <span className="hidden lg:inline-flex items-center gap-2">
-             <ZuluClock />
-           </span>
-           <span className="flex items-center gap-1.5">
-             SYS: <span className={backendStatus === 'connected' ? 'text-green-500' : 'text-red-500'}>{backendStatus.toUpperCase()}</span>
-           </span>
-           {spaceWeather && (
-             <span className="hidden lg:inline">
-               SOLAR: <span style={{ color: spaceWeather.storm_color, fontWeight: 700 }}>Kp{spaceWeather.kp_index}</span>
-             </span>
-           )}
-           <span className="hidden lg:inline-flex items-center gap-1">
-             <span className="text-blue-400 font-bold">{Object.values(activeLayers).filter(Boolean).length}</span>
-             <span className="text-gray-400">FEEDS</span>
-           </span>
-           <UptimeClock />
-        </div>
-      </motion.header>
+  {/* Center: Controls (자동 중앙 정렬) */}
+  <div className="flex items-center gap-1 md:gap-3 px-2">
+    <button 
+      onClick={() => setMapProjection(p => p === 'globe' ? 'mercator' : 'globe')}
+      className="px-3 md:px-4 py-1.5 text-[10px] md:text-[11px] font-medium text-gray-300 hover:text-white bg-white/5 border border-white/10 rounded-full transition-all hover:bg-white/10 whitespace-nowrap"
+    >
+      <span className="hidden md:inline">2D/3D Conversion</span>
+      <span className="md:hidden">3D</span>
+    </button>
+    <button 
+      onClick={() => setMapStyle(s => s === 'dark' ? 'satellite' : 'dark')}
+      className="px-3 md:px-4 py-1.5 text-[10px] md:text-[11px] font-medium text-gray-300 hover:text-white bg-white/5 border border-white/10 rounded-full transition-all hover:bg-white/10 whitespace-nowrap"
+    >
+      <span className="hidden md:inline">Satellite/Map View</span>
+      <span className="md:hidden">Map</span>
+    </button>
+  </div>
+
+  {/* Right: Status Bar (우측 정렬) */}
+  <div className="flex items-center justify-end gap-3 md:gap-6 text-[10px] md:text-[11px] font-mono tracking-widest text-gray-300">
+    <div className="hidden lg:flex items-center gap-6">
+      <ZuluClock />
+      <span className="flex items-center gap-1.5">
+        SYS: <span className={backendStatus === 'connected' ? 'text-green-500' : 'text-red-500'}>{backendStatus.toUpperCase()}</span>
+      </span>
+      {spaceWeather && (
+        <span>
+          SOLAR: <span style={{ color: spaceWeather.storm_color, fontWeight: 700 }}>Kp{spaceWeather.kp_index}</span>
+        </span>
+      )}
+      <span className="flex items-center gap-1">
+        <span className="text-blue-400 font-bold">{Object.values(activeLayers).filter(Boolean).length}</span>
+        <span className="text-gray-400">FEEDS</span>
+      </span>
+    </div>
+    
+    <UptimeClock />
+    {/* 2. URL 변경 부분: 아래 href 주소를 원하는 곳으로 수정하세요 */}
+    <a href='https://www.officialyegrina.com' target='_blank' className="text-gray-500 hover:text-white transition-colors">
+       <span className="hidden md:inline">SUPPORT</span>
+    </a>
+  </div>
+</motion.header>
 
       {/* ── MOBILE: Compact top status ── */}
       {isMobile && (
