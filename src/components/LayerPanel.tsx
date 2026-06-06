@@ -278,18 +278,6 @@ function LayerPanel({ data, activeLayers, setActiveLayers, isMobile, onSearch, o
         })}
       </div> {/* <-- 이 </div>가 LAYER_GROUPS.map을 감싸는 flex-1 영역을 닫는 태그입니다. */}
 
-      {/* ── NEW: 하단 Search, Pin, Memo 툴 버튼 (여기에 정확히 들어갑니다) ── */}
-      <div className="mt-6 pt-4 border-t border-white/10 space-y-2 px-2 pb-4">
-        <button onClick={onSearch} className="w-full flex items-center gap-2 px-3 py-2 border border-white/10 rounded-sm bg-black/20 hover:border-cyan-500/50 text-[10px] text-white/70 hover:text-cyan-400 transition-all">
-          <Search size={12} /> SEARCH
-        </button>
-        <button onClick={onPinMode} className="w-full flex items-center gap-2 px-3 py-2 border border-white/10 rounded-sm bg-black/20 hover:border-gray-400 text-[10px] text-white/70 hover:text-white transition-all">
-          <MapPin size={12} /> PIN
-        </button>
-        <button onClick={onMemoMode} className="w-full flex items-center gap-2 px-3 py-2 border border-white/10 rounded-sm bg-black/20 hover:border-gray-400 text-[10px] text-white/70 hover:text-white transition-all">
-          <StickyNote size={12} /> MEMO
-        </button>
-      </div>
 
     </div>
   );
