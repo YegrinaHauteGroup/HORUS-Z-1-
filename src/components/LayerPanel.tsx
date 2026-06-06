@@ -7,12 +7,16 @@ import {
   CloudLightning, Radiation, Tv, Anchor, Ship, Newspaper,
   Network, Share2, Radio
 } from 'lucide-react';
+import { Search, MapPin, StickyNote } from 'lucide-react';
 
 interface LayerPanelProps {
   data: any;
   activeLayers: any;
   setActiveLayers: React.Dispatch<React.SetStateAction<any>>;
   isMobile?: boolean;
+  onSearch?: () => void;
+  onPinMode?: () => void;
+  onMemoMode?: () => void;
 }
 
 const LAYER_GROUPS = [
@@ -105,7 +109,7 @@ function Shield(props: any) {
   );
 }
 
-function LayerPanel({ data, activeLayers, setActiveLayers, isMobile }: LayerPanelProps) {
+function LayerPanel({ data, activeLayers, setActiveLayers, isMobile, onSearch, onPinMode, onMemoMode }: LayerPanelProps) {
   const [hoveredGroup, setHoveredGroup] = useState<string | null>(null);
 
   const toggle = (key: string) => setActiveLayers((prev: any) => ({ ...prev, [key]: !prev[key] }));
@@ -140,37 +144,35 @@ function LayerPanel({ data, activeLayers, setActiveLayers, isMobile }: LayerPane
                 const count = getCount(layer.dataKey);
                 
                 return (
-                  <button
-                    key={layer.key}
-                    onClick={() => {
-                      if (layer.key === 'sdk_ransomware') {
-                        alert('Ransomware Feed - Coming Soon');
-                      } else {
-                        toggle(layer.key);
-                      }
-                    }}
-                    className={`flex items-center gap-2 px-2 py-2 rounded border transition-colors ${
-                      isLayerActive 
-                        ? 'bg-white/10 border-white/20' 
-                        : 'bg-transparent border-white/5 hover:border-white/10'
-                    }`}
-                  >
-                    <div 
-                      className={`w-2 h-2 rounded-full border flex-shrink-0 transition-all ${
-                        isLayerActive ? 'bg-current border-current scale-100' : 'bg-transparent border-white/30 scale-75'
-                      }`}
-                      style={{ color: isLayerActive ? layer.color : 'inherit', boxShadow: isLayerActive ? `0 0 8px ${layer.color}` : 'none' }}
-                    />
-                    <span className={`text-[9px] font-mono uppercase tracking-wider flex-1 text-left ${isLayerActive ? 'text-white' : 'text-white/60'}`}>
-                      {layer.label}
-                    </span>
-                    {count !== null && (
-                      <span className="text-[8px] font-mono tabular-nums opacity-60">
-                        {count.toLocaleString()}
-                      </span>
-                    )}
-                  </button>
-                );
+                  
+  <button
+    key={layer.key}
+    onClick={() => {
+      if (layer.key === 'sdk_ransomware') {
+        alert('Ransomware Feed - Coming Soon');
+      } else {
+        toggle(layer.key);
+      }
+    }}
+    // 디자인이 변경된 부분입니다 (점 삭제, 직사각형 테두리)
+    className={`w-full flex items-center justify-between px-3 py-2 rounded-sm border transition-all duration-200 ${
+      isLayerActive 
+        ? 'bg-white/10 border-white/30' 
+        : 'bg-black/20 border-white/10 hover:border-white/20'
+    }`}
+  >
+    <span className={`text-[10px] font-mono uppercase tracking-wider text-left transition-colors duration-200 ${
+      isLayerActive ? 'text-white' : 'text-white/50'
+    }`}>
+      {layer.label}
+    </span>
+    {count !== null && (
+      <span className="text-[9px] font-mono tabular-nums opacity-60 text-white/50">
+        {count.toLocaleString()}
+      </span>
+    )}
+  </button>
+);
               })}
             </div>
           </div>
@@ -274,7 +276,21 @@ function LayerPanel({ data, activeLayers, setActiveLayers, isMobile }: LayerPane
             </div>
           );
         })}
+      </div> {/* <-- 이 </div>가 LAYER_GROUPS.map을 감싸는 flex-1 영역을 닫는 태그입니다. */}
+
+      {/* ── NEW: 하단 Search, Pin, Memo 툴 버튼 (여기에 정확히 들어갑니다) ── */}
+      <div className="mt-6 pt-4 border-t border-white/10 space-y-2 px-2 pb-4">
+        <button onClick={onSearch} className="w-full flex items-center gap-2 px-3 py-2 border border-white/10 rounded-sm bg-black/20 hover:border-cyan-500/50 text-[10px] text-white/70 hover:text-cyan-400 transition-all">
+          <Search size={12} /> SEARCH
+        </button>
+        <button onClick={onPinMode} className="w-full flex items-center gap-2 px-3 py-2 border border-white/10 rounded-sm bg-black/20 hover:border-gray-400 text-[10px] text-white/70 hover:text-white transition-all">
+          <MapPin size={12} /> PIN
+        </button>
+        <button onClick={onMemoMode} className="w-full flex items-center gap-2 px-3 py-2 border border-white/10 rounded-sm bg-black/20 hover:border-gray-400 text-[10px] text-white/70 hover:text-white transition-all">
+          <StickyNote size={12} /> MEMO
+        </button>
       </div>
+
     </div>
   );
 }
