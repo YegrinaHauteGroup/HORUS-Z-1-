@@ -624,23 +624,6 @@ export default function Dashboard() {
   </div>
 </div>
 
-  {/* Center: Controls (자동 중앙 정렬) */}
-  <div className="flex items-center gap-1 md:gap-3 px-2">
-    <button 
-      onClick={() => setMapProjection(p => p === 'globe' ? 'mercator' : 'globe')}
-      className="px-3 md:px-4 py-1.5 text-[10px] md:text-[11px] font-medium text-gray-300 hover:text-white bg-white/5 border border-white/10 rounded-full transition-all hover:bg-white/10 whitespace-nowrap"
-    >
-      <span className="hidden md:inline">2D/3D Conversion</span>
-      <span className="md:hidden">3D</span>
-    </button>
-    <button 
-      onClick={() => setMapStyle(s => s === 'dark' ? 'satellite' : 'dark')}
-      className="px-3 md:px-4 py-1.5 text-[10px] md:text-[11px] font-medium text-gray-300 hover:text-white bg-white/5 border border-white/10 rounded-full transition-all hover:bg-white/10 whitespace-nowrap"
-    >
-      <span className="hidden md:inline">Satellite/Map View</span>
-      <span className="md:hidden">Map</span>
-    </button>
-  </div>
 
   {/* Right: Status Bar (우측 정렬) */}
   <div className="flex items-center justify-end gap-3 md:gap-6 text-[10px] md:text-[11px] font-mono tracking-widest text-gray-300">

@@ -186,10 +186,11 @@ function LayerPanel({ data, activeLayers, setActiveLayers, isMobile, mapStyle, t
   }
 
   return (
-    // 배경을 불투명한 다크 그레이(#121212)로 변경
-    <div className="absolute top-0 left-0 h-full w-[80px] border-r border-[#2A2A2A] flex flex-col pt-16 pb-8 z-50 pointer-events-auto bg-[#121212] shadow-2xl">
+    // 1. pt-16을 pt-24로 늘려 헤더 밑으로 상단 여백을 충분히 확보
+    // 2. 가로 스크롤을 막고 팝업이 잘리지 않도록 overflow-visible 추가
+    <div className="absolute top-0 left-0 h-full w-[80px] border-r border-[#2A2A2A] flex flex-col pt-24 pb-8 z-[600] pointer-events-auto bg-[#121212] shadow-2xl overflow-visible">
       
-      {/* ── NEW: 상단 지도 조작 버튼 영역 ── */}
+      {/* ── 상단 지도 조작 버튼 영역 (2D/3D & Satellite) ── */}
       {toggleProjection && toggleMapStyle && (
         <div className="flex flex-col items-center gap-4 mt-2 mb-6 w-full border-b border-[#2A2A2A] pb-6">
           <button 
@@ -197,7 +198,7 @@ function LayerPanel({ data, activeLayers, setActiveLayers, isMobile, mapStyle, t
             title={projection === 'globe' ? "Switch to 2D" : "Switch to 3D"}
             className="p-2 rounded bg-[#1A1A1A] border border-[#333] hover:bg-[#2A2A2A] text-gray-400 hover:text-white transition-colors"
           >
-            {projection === 'globe' ? <Globe className="w-4 h-4" /> : <MapPinned className="w-4 h-4" />}
+            {projection === 'globe' ? <Globe className="w-5 h-5" /> : <MapPinned className="w-5 h-5" />}
           </button>
           <button 
             onClick={toggleMapStyle}
@@ -208,19 +209,22 @@ function LayerPanel({ data, activeLayers, setActiveLayers, isMobile, mapStyle, t
                 : 'bg-[#1A1A1A] border border-[#333] text-gray-400 hover:bg-[#2A2A2A] hover:text-white'
             }`}
           >
-            <Satellite className="w-4 h-4" />
+            <Satellite className="w-5 h-5" />
           </button>
         </div>
       )}
 
       {/* ── 기존 레이어 메뉴 영역 ── */}
-      <div className="flex-1 flex flex-col gap-8 px-2 overflow-y-auto hide-scrollbar">
+      {/* 3. overflow-y-auto 삭제, gap-8을 gap-6으로 줄여 화면에 다 들어가게 함 */}
+      <div className="flex-1 flex flex-col gap-6 px-2 overflow-visible">
         {LAYER_GROUPS.map((group) => {
           const isHovered = hoveredGroup === group.label;
           return (
             <div 
               key={group.label} 
               className="relative flex justify-center items-center"
+              // 4. 모바일 및 마우스 작동 안정성을 위해 클릭(onClick)으로도 열리도록 추가
+              onClick={() => setHoveredGroup(isHovered ? null : group.label)}
               onMouseEnter={() => setHoveredGroup(group.label)}
               onMouseLeave={() => setHoveredGroup(null)}
             >
