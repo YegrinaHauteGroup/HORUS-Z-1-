@@ -532,9 +532,9 @@ export default function Dashboard() {
           >
             {/* ── Titles ── */}
             <div className="flex flex-col items-center mb-12">
-              <h1 className="text-5xl font-light tracking-[0.5em] text-white mb-4">HORUS</h1>
-              <p className="text-[10px] tracking-[0.4em] text-gray-500 uppercase">Global Intelligence System</p>
-              <p className="text-[8px] tracking-[0.2em] text-gray-700 uppercase mt-1">Yegrina Haute Group Technologies 2026</p>
+              <h1 className="text-5xl font-light tracking-normal text-white mb-4">HORUS</h1>
+              <p className="text-[10px] tracking-normal text-gray-500 uppercase">Global Intelligence System Platform</p>
+              <p className="text-[8px] tracking-normal text-gray-700 uppercase mt-1">Powered by Yegrina Haute Group Technologies 2026</p>
             </div>
 
             {/* ── Login Logic / Progress Logic ── */}
@@ -612,21 +612,38 @@ export default function Dashboard() {
   initial={{ opacity: 0, y: -20 }} 
   animate={{ opacity: 1, y: 0 }} 
   transition={{ duration: 0.8 }}
-  className="fixed top-0 left-0 w-full z-[200] bg-black/90 backdrop-blur-md border-b border-gray-800 px-4 md:px-6 py-3 grid grid-cols-[1fr_auto_1fr] items-center"
+  className="fixed top-0 left-0 w-full z-[200] bg-black/90 backdrop-blur-md border-b border-gray-800 px-4 md:px-6 py-2 grid grid-cols-[1fr_auto_1fr] items-center"
 >
   {/* Left: Logo & Branding */}
 <div className="flex items-center gap-2 overflow-hidden">
-  <img src="/hautegroup.png" alt="Yegrina Logo" className="w-7 h-7 object-contain shrink-0" />
+  <img src="/hautegroup.png" alt="Yegrina Logo" className="w-8 h-8 object-contain shrink-0" />
   {/* hidden 제거 및 md 이상에서만 Subtitle이 보이도록 설정 */}
   <div className="flex items-baseline gap-2">
-    <h1 className="text-lg md:text-xl font-light tracking-wider text-white font-['Inter'] leading-none">HORUS</h1>
-    <span className="hidden md:block text-xs text-gray-400 font-['Inter'] tracking-widest uppercase leading-none">GLOBAL OPERATING SYSTEM</span>
+    <h1 className="text-lg md:text-xl font-MEDIUM tracking-normal text-white font-['Inter'] leading-none">HORUS</h1>
+    <span className="hidden md:block text-xs text-gray-400 font-['Inter'] tracking-tight uppercase leading-none">GLOBAL OPERATING SYSTEM</span>
   </div>
 </div>
-
+  
+  {/* Center: Controls (자동 중앙 정렬) */}
+  <div className="flex items-center gap-1 md:gap-3 px-2">
+    <button 
+      onClick={() => setMapProjection(p => p === 'globe' ? 'mercator' : 'globe')}
+      className="px-3 md:px-4 py-1.5 text-[10px] md:text-[11px] font-medium text-gray-300 hover:text-white bg-white/5 border border-white/10 rounded-xs transition-all hover:bg-white/10 whitespace-nowrap"
+    >
+      <span className="hidden md:inline">2D/3D Conversion</span>
+      <span className="md:hidden">3D</span>
+    </button>
+    <button 
+      onClick={() => setMapStyle(s => s === 'dark' ? 'satellite' : 'dark')}
+      className="px-3 md:px-4 py-1.5 text-[10px] md:text-[11px] font-medium text-gray-300 hover:text-white bg-white/5 border border-white/10 rounded-xs transition-all hover:bg-white/10 whitespace-nowrap"
+    >
+      <span className="hidden md:inline">Satellite/Map View</span>
+      <span className="md:hidden">Map</span>
+    </button>
+  </div>
 
   {/* Right: Status Bar (우측 정렬) */}
-  <div className="flex items-center justify-end gap-3 md:gap-6 text-[10px] md:text-[11px] font-mono tracking-widest text-gray-300">
+  <div className="flex items-center justify-end gap-3 md:gap-6 text-[10px] md:text-[11px] font-mono tracking-normal text-gray-300">
     <div className="hidden lg:flex items-center gap-6">
       <ZuluClock />
       <span className="flex items-center gap-1.5">
