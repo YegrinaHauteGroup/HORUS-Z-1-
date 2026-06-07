@@ -187,7 +187,7 @@ function LayerPanel({ data, activeLayers, setActiveLayers, isMobile, mapStyle, t
 
       {/* ── 기존 레이어 메뉴 영역 ── */}
       {/* 3. overflow-y-auto 삭제, gap-8을 gap-6으로 줄여 화면에 다 들어가게 함 */}
-      <div className="flex-1 flex flex-col gap-6 px-2 overflow-visible">
+      <div className="flex-1 flex flex-col gap-3 px-2 overflow-visible">
         {LAYER_GROUPS.map((group) => {
           const isHovered = hoveredGroup === group.label;
           return (
