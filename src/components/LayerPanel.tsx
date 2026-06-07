@@ -4,10 +4,9 @@ import { memo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Plane, Satellite, Activity, Sun, AlertTriangle, Camera, Flame, Target,
-  CloudLightning, Radiation, Tv, Anchor, Ship, Newspaper,
-  Network, Share2, Radio
+  CloudLightning, Radiation, Tv, Anchor, Share2, Radio, Ship, Network, BarChart3, Layers,
+  Globe, MapPinned // 아이콘 2개 추가
 } from 'lucide-react';
-import { Search, MapPin, StickyNote } from 'lucide-react';
 
 interface LayerPanelProps {
   data: any;
@@ -17,6 +16,11 @@ interface LayerPanelProps {
   onSearch?: () => void;
   onPinMode?: () => void;
   onMemoMode?: () => void;
+  // 새로 추가된 지도 조작 Props
+  mapStyle?: string;
+  toggleMapStyle?: () => void;
+  projection?: string;
+  toggleProjection?: () => void;
 }
 
 const LAYER_GROUPS = [
@@ -109,7 +113,7 @@ function Shield(props: any) {
   );
 }
 
-function LayerPanel({ data, activeLayers, setActiveLayers, isMobile, onSearch, onPinMode, onMemoMode }: LayerPanelProps) {
+function LayerPanel({ data, activeLayers, setActiveLayers, isMobile, mapStyle, toggleMapStyle, toggleProjection, projection }: LayerPanelProps) {
   const [hoveredGroup, setHoveredGroup] = useState<string | null>(null);
 
   const toggle = (key: string) => setActiveLayers((prev: any) => ({ ...prev, [key]: !prev[key] }));
@@ -182,14 +186,37 @@ function LayerPanel({ data, activeLayers, setActiveLayers, isMobile, onSearch, o
   }
 
   return (
-    <div className="absolute top-0 left-0 h-full w-[80px] border-r border-white/5 flex flex-col pt-32 pb-8 z-50 pointer-events-auto bg-black/20 backdrop-blur-[2px]">
+    // 배경을 불투명한 다크 그레이(#121212)로 변경
+    <div className="absolute top-0 left-0 h-full w-[80px] border-r border-[#2A2A2A] flex flex-col pt-16 pb-8 z-50 pointer-events-auto bg-[#121212] shadow-2xl">
       
-      <div className="flex-1 flex flex-col gap-8 px-2">
-        {LAYER_GROUPS.map((group) => {
-          const groupActiveCount = group.layers.filter(l => activeLayers[l.key]).length;
-          const isActive = groupActiveCount > 0;
-          const isHovered = hoveredGroup === group.label;
+      {/* ── NEW: 상단 지도 조작 버튼 영역 ── */}
+      {toggleProjection && toggleMapStyle && (
+        <div className="flex flex-col items-center gap-4 mt-2 mb-6 w-full border-b border-[#2A2A2A] pb-6">
+          <button 
+            onClick={toggleProjection}
+            title={projection === 'globe' ? "Switch to 2D" : "Switch to 3D"}
+            className="p-2 rounded bg-[#1A1A1A] border border-[#333] hover:bg-[#2A2A2A] text-gray-400 hover:text-white transition-colors"
+          >
+            {projection === 'globe' ? <Globe className="w-4 h-4" /> : <MapPinned className="w-4 h-4" />}
+          </button>
+          <button 
+            onClick={toggleMapStyle}
+            title="Satellite View"
+            className={`p-2 rounded transition-colors ${
+              mapStyle === 'satellite' 
+                ? 'bg-[var(--cyan-primary)]/20 border border-[var(--cyan-primary)]/50 text-[var(--cyan-primary)]' 
+                : 'bg-[#1A1A1A] border border-[#333] text-gray-400 hover:bg-[#2A2A2A] hover:text-white'
+            }`}
+          >
+            <Satellite className="w-4 h-4" />
+          </button>
+        </div>
+      )}
 
+      {/* ── 기존 레이어 메뉴 영역 ── */}
+      <div className="flex-1 flex flex-col gap-8 px-2 overflow-y-auto hide-scrollbar">
+        {LAYER_GROUPS.map((group) => {
+          const isHovered = hoveredGroup === group.label;
           return (
             <div 
               key={group.label} 
@@ -197,82 +224,56 @@ function LayerPanel({ data, activeLayers, setActiveLayers, isMobile, onSearch, o
               onMouseEnter={() => setHoveredGroup(group.label)}
               onMouseLeave={() => setHoveredGroup(null)}
             >
-              {/* The Vertical Label */}
-              <div 
-                className={`text-[10px] font-mono font-bold cursor-pointer select-none transition-all duration-300 flex items-center justify-center`}
-                style={{
-                  writingMode: 'horizontal-tb',
-                  color: isActive ? group.color : 'rgba(255, 255, 255, 0.4)',
-                  textShadow: isActive ? `0 0 10px ${group.color}80` : 'none',
-                  letterSpacing: '0.1em',
-                  opacity: isActive || isHovered ? 1 : 0.5,
-                }}
-              >
-                
+              {/* 글씨를 항상 완전한 흰색(text-white)으로 고정 */}
+              <div className="text-[10px] font-mono font-bold text-white cursor-pointer select-none">
                 {group.label}
               </div>
 
-              {/* Slide-out Menu */}
               <AnimatePresence>
                 {isHovered && (
                   <motion.div
-                    initial={{ opacity: 0, x: -10, filter: 'blur(4px)' }}
-                    animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
-                    exit={{ opacity: 0, x: -5, filter: 'blur(2px)' }}
-                    transition={{ duration: 0.2, ease: "easeOut" }}
-                    className="absolute left-[70px] top-1/2 -translate-y-1/2 min-w-[240px] bg-black/80 backdrop-blur-md border border-white/10 rounded-lg p-3 shadow-2xl z-50 pointer-events-auto"
-                    style={{
-                      boxShadow: `0 0 30px ${group.color}15, inset 0 0 20px ${group.color}05`
-                    }}
+                    initial={{ opacity: 0, x: -5 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -5 }}
+                    className="absolute left-[70px] top-1/2 -translate-y-1/2 min-w-[200px] bg-[#1A1A1A] border border-[#333] rounded-sm p-2 shadow-2xl z-50 pointer-events-auto"
                   >
-                    <div className="text-[11px] font-bold font-mono mb-3 tracking-widest border-b border-white/10 pb-2" style={{ color: group.color }}>
+                    <div className="text-[10px] font-bold font-mono mb-2 tracking-widest text-gray-400 border-b border-[#333] pb-1">
                       {group.fullLabel}
                     </div>
-                    <div className="flex flex-col gap-2">
-  {group.layers.map((layer) => {
-    const isLayerActive = activeLayers[layer.key];
-    const count = getCount(layer.dataKey);
-    
-    return (
-      <button
-        key={layer.key}
-        onClick={() => {
-          if (layer.key === 'sdk_ransomware') {
-            alert('Ransomware Feed - Coming Soon');
-          } else {
-            toggle(layer.key);
-          }
-        }}
-        /* 직사각형 테두리 적용, 점(dot) 제거, 상태에 따른 테두리 색상 변화 */
-        className={`w-full flex items-center justify-between px-3 py-2 rounded-md border transition-all duration-200 ${
-          isLayerActive 
-            ? 'bg-white/5 border-white/30' 
-            : 'bg-black/20 border-white/10 hover:border-white/20'
-        }`}
-      >
-        <span className={`text-[10px] font-mono uppercase tracking-wider text-left transition-colors duration-200 ${
-          isLayerActive ? 'text-white' : 'text-white/50'
-        }`}>
-          {layer.label}
-        </span>
-        {count !== null && (
-          <span className="text-[9px] font-mono tabular-nums opacity-60 text-white/50">
-            {count.toLocaleString()}
-          </span>
-        )}
-      </button>
-    );
-  })}
-</div>
+                    <div className="flex flex-col gap-1">
+                      {group.layers.map((layer) => {
+                        const isLayerActive = activeLayers[layer.key];
+                        const count = getCount(layer.dataKey);
+                        return (
+                          <button
+                            key={layer.key}
+                            onClick={() => {
+                              if (layer.key === 'sdk_ransomware') alert('Coming Soon');
+                              else toggle(layer.key);
+                            }}
+                            className={`w-full flex items-center justify-between px-2 py-1.5 rounded-sm border transition-all duration-150 ${
+                              isLayerActive 
+                                ? 'bg-[#333] border-gray-500 text-white font-medium' 
+                                : 'bg-transparent border-transparent hover:bg-[#222] text-gray-400'
+                            }`}
+                          >
+                            <span className="text-[10px] font-mono uppercase tracking-tight">{layer.label}</span>
+                            {count !== null && (
+                              <span className={`text-[9px] font-mono tabular-nums ${isLayerActive ? 'text-gray-300' : 'text-gray-500'}`}>
+                                {count.toLocaleString()}
+                              </span>
+                            )}
+                          </button>
+                        );
+                      })}
+                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>
             </div>
           );
         })}
-      </div> {/* <-- 이 </div>가 LAYER_GROUPS.map을 감싸는 flex-1 영역을 닫는 태그입니다. */}
-
-
+      </div>
     </div>
   );
 }
