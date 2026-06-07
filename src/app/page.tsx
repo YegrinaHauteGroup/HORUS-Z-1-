@@ -546,7 +546,7 @@ export default function Dashboard() {
   value={adminCode}
   onChange={(e) => { setAdminCode(e.target.value); setError(false); }}
   // text-sm -> text-base (16px)로 변경하여 아이폰 확대 버그 해결
-  className="w-full bg-transparent border-b border-gray-800 text-center text-white placeholder-gray-700 focus:outline-none focus:border-white transition-colors pb-2 font-mono text-base"
+  className="w-full bg-transparent border-b border-gray-800 text-center text-white placeholder-gray-700 focus:outline-none focus:border-white transition-colors pb-2 font-['Inter'] text-base"
 />
                 <button
                   onClick={() => {
@@ -563,7 +563,7 @@ export default function Dashboard() {
                   Login
                 </button>
                 {error && (
-                  <p className="text-red-500 text-[8px] font-mono tracking-widest uppercase">Administer Code Error</p>
+                  <p className="text-red-500 text-[8px] font-['Inter'] tracking-widest uppercase">Administer Code Error</p>
                 )}
               </div>
             ) : (
@@ -577,7 +577,7 @@ export default function Dashboard() {
                     className="absolute inset-y-0 left-0 bg-white shadow-[0_0_10px_rgba(255,255,255,0.5)]"
                   />
                 </div>
-                <p className="mt-3 text-center text-[9px] font-mono text-gray-400 tracking-widest uppercase animate-pulse">
+                <p className="mt-3 text-center text-[9px] font-['Inter'] text-gray-400 tracking-widest uppercase animate-pulse">
                   System Initializing...
                 </p>
               </div>
@@ -643,7 +643,7 @@ export default function Dashboard() {
   </div>
 
   {/* Right: Status Bar (우측 정렬) */}
-  <div className="flex items-center justify-end gap-3 md:gap-6 text-[10px] md:text-[11px] font-mono tracking-normal text-gray-300">
+  <div className="flex items-center justify-end gap-3 md:gap-6 text-[10px] md:text-[11px] font-['Inter'] tracking-normal text-gray-300">
     <div className="hidden lg:flex items-center gap-6">
       <ZuluClock />
       <span className="flex items-center gap-1.5">
@@ -671,7 +671,7 @@ export default function Dashboard() {
       {/* ── MOBILE: Compact top status ── */}
 {isMobile && (
   <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.5 }} className="absolute top-3 right-3 z-[200] pointer-events-auto flex items-center gap-2">
-    <a href='https://www.officialyegrina.com' target='_blank' className="glass-panel px-3 py-1.5 flex items-center gap-1.5 text-[10px] font-mono tracking-widest hover:opacity-80 transition-opacity border-gray-400/40 bg-gray-400/10 text-gray-400">
+    <a href='https://www.officialyegrina.com' target='_blank' className="glass-panel px-3 py-1.5 flex items-center gap-1.5 text-[10px] font-['Inter'] tracking-widest hover:opacity-80 transition-opacity border-gray-400/40 bg-gray-400/10 text-gray-400">
       SUPPORT
     </a>
   </motion.div>
@@ -753,10 +753,10 @@ export default function Dashboard() {
               <div className="flex items-center justify-between px-4 py-2.5 bg-[#111] border-b border-[var(--border-primary)]">
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full bg-[#FF4081] animate-osiris-pulse" />
-                  <span className="text-[12px] font-mono font-bold text-white tracking-wider">{liveFeedName}</span>
-                  <span className="px-1.5 py-0.5 rounded bg-red-500/20 text-red-400 font-mono text-[9px] font-bold">LIVE STREAM</span>
+                  <span className="text-[12px] font-['Inter'] font-bold text-white tracking-wider">{liveFeedName}</span>
+                  <span className="px-1.5 py-0.5 rounded bg-red-500/20 text-red-400 font-['Inter'] text-[9px] font-bold">LIVE STREAM</span>
                   {!liveFeedEmbedAllowed && (
-                    <span className="px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-400 font-mono text-[9px]">EXTERNAL ONLY</span>
+                    <span className="px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-400 font-['Inter'] text-[9px]">EXTERNAL ONLY</span>
                   )}
                 </div>
                 <div className="flex items-center gap-3">
@@ -764,7 +764,7 @@ export default function Dashboard() {
                     href={getYouTubeWatchUrl(liveFeedUrl)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 px-2.5 py-1 rounded bg-[var(--border-primary)] hover:bg-[var(--gold-primary)] hover:text-black text-white transition-colors text-[11px] font-mono"
+                    className="flex items-center gap-1.5 px-2.5 py-1 rounded bg-[var(--border-primary)] hover:bg-[var(--gold-primary)] hover:text-black text-white transition-colors text-[11px] font-['Inter']"
                   >
                     <span>Open in YouTube</span>
                     <ExternalLink className="w-3 h-3" />
@@ -791,15 +791,15 @@ export default function Dashboard() {
                     <div className="w-14 h-14 rounded-full bg-[#39FF14]/10 border border-[#39FF14]/20 flex items-center justify-center mx-auto mb-4">
                       <ExternalLink className="w-6 h-6 text-[#39FF14]" />
                     </div>
-                    <p className="text-[13px] font-mono font-bold text-white tracking-widest mb-2">EMBED RESTRICTED</p>
-                    <p className="text-[11px] font-mono text-white/50 mb-6 max-w-xs">
+                    <p className="text-[13px] font-['Inter'] font-bold text-white tracking-widest mb-2">EMBED RESTRICTED</p>
+                    <p className="text-[11px] font-['Inter'] text-white/50 mb-6 max-w-xs">
                       {liveFeedName} does not allow third-party embedding. Click below to open the live stream directly.
                     </p>
                     <a
                       href={getYouTubeWatchUrl(liveFeedUrl)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-6 py-2.5 rounded border border-[#39FF14]/40 text-[#39FF14] font-mono text-[12px] hover:bg-[#39FF14]/10 transition-colors tracking-wider"
+                      className="inline-flex items-center gap-2 px-6 py-2.5 rounded border border-[#39FF14]/40 text-[#39FF14] font-['Inter'] text-[12px] hover:bg-[#39FF14]/10 transition-colors tracking-wider"
                     >
                       <ExternalLink className="w-4 h-4" />
                       OPEN LIVE STREAM
@@ -812,7 +812,7 @@ export default function Dashboard() {
               {liveFeedEmbedAllowed && (
                 <div className="bg-[#111]/90 px-4 py-2.5 border-t border-[var(--border-primary)] flex items-center gap-2.5">
                   <AlertTriangle className="w-4 h-4 text-[var(--gold-primary)] shrink-0" />
-                  <span className="text-[11px] font-mono text-white/70 leading-relaxed">
+                  <span className="text-[11px] font-['Inter'] text-white/70 leading-relaxed">
                     If you see &ldquo;Video unavailable&rdquo;, use <strong className="text-[var(--gold-primary)]">Open in YouTube</strong> above.
                   </span>
                 </div>
@@ -857,7 +857,7 @@ export default function Dashboard() {
                 <div className="px-3 pb-3">
                   <div className="flex items-center justify-between mb-2">
                     <span className="hud-text text-[9px] text-[var(--text-primary)]">
-                      {mobilePanel === 'layers' ? 'LAYERS & STATS' : mobilePanel === 'markets' ? 'MARKETS & INTEL' : mobilePanel === 'intel' ? 'INTEL FEED' : mobilePanel === 'recon' ? 'OSIRIS RECON' : 'SEARCH'}
+                      {mobilePanel === 'layers' ? 'LAYERS & STATS' : mobilePanel === 'markets' ? 'MARKETS & INTEL' : mobilePanel === 'intel' ? 'INTEL FEED' : mobilePanel === 'recon' ? 'HORUS RECON' : 'SEARCH'}
                     </span>
                     <button onClick={() => setMobilePanel(null)} className="text-[var(--text-muted)] p-1"><X className="w-4 h-4" /></button>
                   </div>
@@ -901,7 +901,7 @@ export default function Dashboard() {
       {/* ── BOTTOM RAW METRICS (desktop) ── */}
       {!isMobile && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 3, duration: 0.8 }} className="desktop-only absolute bottom-4 left-20 z-[200] pointer-events-auto">
-          <div className="flex items-center gap-6 text-[8px] font-mono tracking-widest text-[var(--text-muted)] opacity-60">
+          <div className="flex items-center gap-6 text-[8px] font-['Inter'] tracking-widest text-[var(--text-muted)] opacity-60">
             <div className="flex gap-2 items-center">
               <span>COORD</span>
               <span ref={coordsDisplayRef} className="text-[var(--gold-primary)] font-bold tabular-nums">—</span>
@@ -928,13 +928,13 @@ export default function Dashboard() {
         <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="absolute top-16 md:top-20 left-2 right-2 md:left-1/2 md:right-auto md:-translate-x-1/2 z-[300] md:w-[480px] max-h-[65vh] overflow-y-auto styled-scrollbar">
           <div className="glass-panel p-5 osiris-glow">
             <div className="flex items-center justify-between mb-3">
-              <h2 className="text-sm font-mono font-bold text-[var(--gold-primary)] tracking-wider">REGION DOSSIER</h2>
+              <h2 className="text-sm font-['Inter'] font-bold text-[var(--gold-primary)] tracking-wider">REGION DOSSIER</h2>
               <button onClick={() => { setRegionDossier(null); setDossierLoading(false); }} className="text-[var(--text-muted)] hover:text-[var(--text-primary)] text-xs">✕</button>
             </div>
             {dossierLoading ? (
               <div className="text-center py-8">
                 <div className="w-5 h-5 border-2 border-[var(--gold-primary)] border-t-transparent rounded-full animate-spin mx-auto mb-2" />
-                <span className="text-[8px] font-mono text-[var(--text-muted)] tracking-widest">COMPILING INTEL...</span>
+                <span className="text-[8px] font-['Inter'] text-[var(--text-muted)] tracking-widest">COMPILING INTEL...</span>
               </div>
             ) : regionDossier && (
               <div className="space-y-3">
@@ -988,7 +988,7 @@ export default function Dashboard() {
       <GlobalStatusBar />
 
       {/* Shortcut hint */}
-      <div className="desktop-only absolute bottom-[26px] right-5 z-[200] pointer-events-none text-[6px] font-mono text-[var(--text-muted)]/40 tracking-widest">
+      <div className="desktop-only absolute bottom-[26px] right-5 z-[200] pointer-events-none text-[6px] font-['Inter'] text-[var(--text-muted)]/40 tracking-widest">
         [?] SHORTCUTS · [F] FULLSCREEN · [S] SHARE · [R] RESET VIEW
       </div>
 
