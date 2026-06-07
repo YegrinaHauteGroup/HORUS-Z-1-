@@ -625,7 +625,7 @@ export default function Dashboard() {
 </div>
   
   {/* Center: Controls (자동 중앙 정렬) */}
-  <div className="flex items-center gap-1 md:gap-3 px-2">
+  <div className="flex items-left gap-1 md:gap-3 px-2">
     <button 
       onClick={() => setMapProjection(p => p === 'globe' ? 'mercator' : 'globe')}
       className="px-3 md:px-4 py-1.5 text-[10px] md:text-[11px] font-medium text-gray-300 hover:text-white bg-white/5 border border-white/10 rounded-xs transition-all hover:bg-white/10 whitespace-nowrap"
