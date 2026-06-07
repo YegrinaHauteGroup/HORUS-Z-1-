@@ -533,8 +533,8 @@ export default function Dashboard() {
             {/* ── Titles ── */}
             <div className="flex flex-col items-center mb-12">
               <h1 className="text-5xl font-light font-['Inter'] tracking-normal text-white mb-4">HORUS</h1>
-              <p className="text-[10px] font-['Inter'] tracking-normal text-gray-500 uppercase">Global Intelligence System Platform</p>
-              <p className="text-[8px] font-['Inter'] tracking-normal text-gray-700 uppercase mt-1">Powered by Yegrina Haute Group Technologies 2026</p>
+              <p className="text-[11px] font-['Inter'] tracking-normal text-gray-500 uppercase">Global Intelligence System Platform</p>
+              <p className="text-[9px] font-['Inter'] tracking-normal text-gray-700 uppercase mt-1">Powered by Yegrina Haute Group Technologies 2026Ⓒ</p>
             </div>
 
             {/* ── Login Logic / Progress Logic ── */}
@@ -558,7 +558,7 @@ export default function Dashboard() {
                       setError(true);
                     }
                   }}
-                  className="w-full py-2 bg-gray-900 text-gray-500 text-[9px] tracking-widest uppercase hover:bg-gray-800 transition-all border border-gray-800"
+                  className="w-full py-2 bg-gray-900 text-gray-500 text-[8px] tracking-widest uppercase hover:bg-gray-800 transition-all border border-gray-800"
                 >
                   Login
                 </button>

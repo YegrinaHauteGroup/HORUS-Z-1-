@@ -200,7 +200,7 @@ function LayerPanel({ data, activeLayers, setActiveLayers, isMobile, mapStyle, t
               onMouseLeave={() => setHoveredGroup(null)}
             >
               {/* 글씨를 항상 완전한 흰색(text-white)으로 고정 */}
-              <div className="px-2 md:px-4 py-1.5 text-[10px] font-mono font-bold text-white hover:text-white bg-white/5 border border-white/10 rounded-xs transition-all hover:bg-white/10 whitespace-nowrap cursor-pointer select-none">
+              <div className="px-1 md:px-4 py-1 text-[10px] font-mono font-bold text-white hover:text-white bg-white/5 border border-white/10 rounded-xs transition-all hover:bg-white/10 whitespace-nowrap cursor-pointer select-none">
                 {group.label}
               </div>
 
