@@ -532,9 +532,9 @@ export default function Dashboard() {
           >
             {/* ── Titles ── */}
             <div className="flex flex-col items-center mb-12">
-              <h1 className="text-5xl font-light tracking-normal text-white mb-4">HORUS</h1>
-              <p className="text-[10px] tracking-normal text-gray-500 uppercase">Global Intelligence System Platform</p>
-              <p className="text-[8px] tracking-normal text-gray-700 uppercase mt-1">Powered by Yegrina Haute Group Technologies 2026</p>
+              <h1 className="text-5xl font-light font-['Inter'] tracking-normal text-white mb-4">HORUS</h1>
+              <p className="text-[10px] font-['Inter'] tracking-normal text-gray-500 uppercase">Global Intelligence System Platform</p>
+              <p className="text-[8px] font-['Inter'] tracking-normal text-gray-700 uppercase mt-1">Powered by Yegrina Haute Group Technologies 2026</p>
             </div>
 
             {/* ── Login Logic / Progress Logic ── */}
@@ -558,12 +558,12 @@ export default function Dashboard() {
                       setError(true);
                     }
                   }}
-                  className="w-full py-2 bg-gray-900 text-gray-500 text-[10px] tracking-widest uppercase hover:bg-gray-800 transition-all border border-gray-800"
+                  className="w-full py-2 bg-gray-900 text-gray-500 text-[9px] tracking-widest uppercase hover:bg-gray-800 transition-all border border-gray-800"
                 >
                   Login
                 </button>
                 {error && (
-                  <p className="text-red-500 text-[9px] font-mono tracking-widest uppercase">Administer Code Error</p>
+                  <p className="text-red-500 text-[8px] font-mono tracking-widest uppercase">Administer Code Error</p>
                 )}
               </div>
             ) : (
@@ -612,7 +612,7 @@ export default function Dashboard() {
   initial={{ opacity: 0, y: -20 }} 
   animate={{ opacity: 1, y: 0 }} 
   transition={{ duration: 0.8 }}
-  className="fixed top-0 left-0 w-full z-[200] bg-black/90 backdrop-blur-md border-b border-gray-800 px-4 md:px-6 py-2 grid grid-cols-[1fr_auto_1fr] items-center"
+  className="fixed top-0 left-0 w-full z-[200] bg-black/90 backdrop-blur-md border-b border-gray-800 px-2 md:px-6 py-2 grid grid-cols-[1fr_auto_1fr] items-center"
 >
   {/* Left: Logo & Branding */}
 <div className="flex items-center gap-2 overflow-hidden">
