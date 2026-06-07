@@ -532,9 +532,9 @@ export default function Dashboard() {
           >
             {/* ── Titles ── */}
             <div className="flex flex-col items-center mb-12">
-              <h1 className="text-5xl font-light tracking-[0.5em] text-white mb-4">HORUS</h1>
-              <p className="text-[10px] tracking-[0.4em] text-gray-500 uppercase">Global Intelligence System</p>
-              <p className="text-[8px] tracking-[0.2em] text-gray-700 uppercase mt-1">Yegrina Haute Group Technologies 2026</p>
+              <h1 className="text-5xl font-light font-['Inter'] tracking-normal text-white mb-4">HORUS</h1>
+              <p className="text-[11px] font-['Inter'] tracking-normal text-gray-500 uppercase">Global Intelligence System Platform</p>
+              <p className="text-[9px] font-['Inter'] tracking-normal text-gray-700 uppercase mt-1">Powered by Yegrina Haute Group Technologies 2026Ⓒ</p>
             </div>
 
             {/* ── Login Logic / Progress Logic ── */}
@@ -558,12 +558,12 @@ export default function Dashboard() {
                       setError(true);
                     }
                   }}
-                  className="w-full py-2 bg-gray-900 text-gray-500 text-[10px] tracking-widest uppercase hover:bg-gray-800 transition-all border border-gray-800"
+                  className="w-full py-2 bg-gray-900 text-gray-500 text-[8px] tracking-widest uppercase hover:bg-gray-800 transition-all border border-gray-800"
                 >
                   Login
                 </button>
                 {error && (
-                  <p className="text-red-500 text-[9px] font-mono tracking-widest uppercase">Administer Code Error</p>
+                  <p className="text-red-500 text-[8px] font-mono tracking-widest uppercase">Administer Code Error</p>
                 )}
               </div>
             ) : (
@@ -612,30 +612,30 @@ export default function Dashboard() {
   initial={{ opacity: 0, y: -20 }} 
   animate={{ opacity: 1, y: 0 }} 
   transition={{ duration: 0.8 }}
-  className="fixed top-0 left-0 w-full z-[200] bg-black/90 backdrop-blur-md border-b border-gray-800 px-4 md:px-6 py-3 grid grid-cols-[1fr_auto_1fr] items-center"
+  className="fixed top-0 left-0 w-full z-[200] bg-black/90 backdrop-blur-md border-b border-gray-800 px-2 md:px-6 py-2 grid grid-cols-[1fr_auto_1fr] items-center"
 >
   {/* Left: Logo & Branding */}
 <div className="flex items-center gap-2 overflow-hidden">
-  <img src="/hautegroup.png" alt="Yegrina Logo" className="w-7 h-7 object-contain shrink-0" />
+  <img src="/hautegroup.png" alt="Yegrina Logo" className="w-8 h-8 object-contain shrink-0" />
   {/* hidden 제거 및 md 이상에서만 Subtitle이 보이도록 설정 */}
   <div className="flex items-baseline gap-2">
-    <h1 className="text-lg md:text-xl font-light tracking-wider text-white font-['Inter'] leading-none">HORUS</h1>
-    <span className="hidden md:block text-xs text-gray-400 font-['Inter'] tracking-widest uppercase leading-none">GLOBAL OPERATING SYSTEM</span>
+    <h1 className="text-lg md:text-xl font-MEDIUM tracking-normal text-white font-['Inter'] leading-none">HORUS</h1>
+    <span className="hidden md:block text-xs text-gray-400 font-['Inter'] tracking-tight uppercase leading-none">GLOBAL OPERATING SYSTEM</span>
   </div>
 </div>
-
+  
   {/* Center: Controls (자동 중앙 정렬) */}
-  <div className="flex items-center gap-1 md:gap-3 px-2">
+  <div className="flex items-left gap-1 md:gap-3 px-2">
     <button 
       onClick={() => setMapProjection(p => p === 'globe' ? 'mercator' : 'globe')}
-      className="px-3 md:px-4 py-1.5 text-[10px] md:text-[11px] font-medium text-gray-300 hover:text-white bg-white/5 border border-white/10 rounded-full transition-all hover:bg-white/10 whitespace-nowrap"
+      className="px-3 md:px-4 py-1.5 text-[10px] md:text-[11px] font-medium text-gray-300 hover:text-white bg-white/5 border border-white/10 rounded-xs transition-all hover:bg-white/10 whitespace-nowrap"
     >
       <span className="hidden md:inline">2D/3D Conversion</span>
       <span className="md:hidden">3D</span>
     </button>
     <button 
       onClick={() => setMapStyle(s => s === 'dark' ? 'satellite' : 'dark')}
-      className="px-3 md:px-4 py-1.5 text-[10px] md:text-[11px] font-medium text-gray-300 hover:text-white bg-white/5 border border-white/10 rounded-full transition-all hover:bg-white/10 whitespace-nowrap"
+      className="px-3 md:px-4 py-1.5 text-[10px] md:text-[11px] font-medium text-gray-300 hover:text-white bg-white/5 border border-white/10 rounded-xs transition-all hover:bg-white/10 whitespace-nowrap"
     >
       <span className="hidden md:inline">Satellite/Map View</span>
       <span className="md:hidden">Map</span>
@@ -643,7 +643,7 @@ export default function Dashboard() {
   </div>
 
   {/* Right: Status Bar (우측 정렬) */}
-  <div className="flex items-center justify-end gap-3 md:gap-6 text-[10px] md:text-[11px] font-mono tracking-widest text-gray-300">
+  <div className="flex items-center justify-end gap-3 md:gap-6 text-[10px] md:text-[11px] font-mono tracking-normal text-gray-300">
     <div className="hidden lg:flex items-center gap-6">
       <ZuluClock />
       <span className="flex items-center gap-1.5">
@@ -685,8 +685,8 @@ export default function Dashboard() {
       {/* ── RIGHT TOOL STRIP (desktop only — mobile uses bottom nav) ── */}
       {!isMobile && <div className="absolute right-2 top-1/2 -translate-y-1/2 flex flex-col gap-2 z-[250] pointer-events-auto bg-black/40 backdrop-blur-sm p-1 rounded-full border border-white/5">
         <div className="relative group">
-          <button onClick={() => { setShowIntel(!showIntel); setShowMarkets(false); setShowAlerts(false); }} className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${showIntel ? 'bg-[var(--cyan-primary)]/20' : 'hover:bg-white/10'}`}>
-            <Radar className={`w-4 h-4 ${showIntel ? 'text-[var(--cyan-primary)]' : 'text-white/60'}`} />
+          <button onClick={() => { setShowIntel(!showIntel); setShowMarkets(false); setShowAlerts(false); }} className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${showIntel ? 'bg-gray-600/20' : 'hover:bg-white/10'}`}>
+            <Radar className={`w-4 h-4 ${showIntel ? 'text-gray-300' : 'text-white/60'}`} />
           </button>
           {/* OSINT / Recon Panel Slideout */}
           <AnimatePresence>
@@ -705,7 +705,7 @@ export default function Dashboard() {
         </div>
 
         <div className="relative group">
-          <button onClick={() => { setShowMarkets(!showMarkets); setShowIntel(false); setShowAlerts(false); }} className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${showMarkets ? 'bg-[var(--gold-primary)]/20' : 'hover:bg-white/10'}`}>
+          <button onClick={() => { setShowMarkets(!showMarkets); setShowIntel(false); setShowAlerts(false); }} className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${showMarkets ? 'bg-gray-600/20' : 'hover:bg-white/10'}`}>
             <BarChart3 className={`w-4 h-4 ${showMarkets ? 'text-[var(--gold-primary)]' : 'text-white/60'}`} />
           </button>
           {/* Markets Panel Slideout */}
@@ -719,8 +719,8 @@ export default function Dashboard() {
         </div>
 
         <div className="relative group">
-          <button onClick={() => { setShowAlerts(!showAlerts); setShowIntel(false); setShowMarkets(false); }} className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${showAlerts ? 'bg-[#FF3D3D]/20' : 'hover:bg-white/10'}`}>
-            <AlertTriangle className={`w-4 h-4 ${showAlerts ? 'text-[#FF3D3D]' : 'text-white/60'}`} />
+          <button onClick={() => { setShowAlerts(!showAlerts); setShowIntel(false); setShowMarkets(false); }} className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${showAlerts ? 'bg-gray-600/20' : 'hover:bg-white/10'}`}>
+            <AlertTriangle className={`w-4 h-4 ${showAlerts ? 'text-gray-300' : 'text-white/60'}`} />
           </button>
           {/* Alerts Panel Slideout */}
           <AnimatePresence>
@@ -919,7 +919,7 @@ export default function Dashboard() {
       )}
 
       {/* ── Scale Bar (desktop) ── */}
-      <div className="desktop-only absolute bottom-[4.5rem] left-[20rem] z-[201] pointer-events-none">
+      <div className="desktop-only absolute bottom-[3rem] left-[10rem] z-[201] pointer-events-none">
         <ScaleBar zoom={mapView.zoom} latitude={mapView.latitude} />
       </div>
 
