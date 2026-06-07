@@ -150,21 +150,15 @@ function LayerPanel({ data, activeLayers, setActiveLayers, isMobile, mapStyle, t
                 return (
                   
   <button
-    key={layer.key}
-    onClick={() => {
-      if (layer.key === 'sdk_ransomware') {
-        alert('Ransomware Feed - Coming Soon');
-      } else {
-        toggle(layer.key);
-      }
-    }}
-    // 디자인이 변경된 부분입니다 (점 삭제, 직사각형 테두리)
-    className={`w-full flex items-center justify-between px-3 py-2 rounded-sm border transition-all duration-200 ${
-      isLayerActive 
-        ? 'bg-white/10 border-white/30' 
-        : 'bg-black/20 border-white/10 hover:border-white/20'
-    }`}
-  >
+  key={layer.key}
+  onClick={() => {
+    if (layer.key === 'sdk_ransomware') alert('Coming Soon');
+    else toggle(layer.key);
+  }}
+  className={`px-3 md:px-4 py-1.5 text-[10px] md:text-[11px] font-medium text-gray-300 hover:text-white bg-white/5 border border-white/10 rounded-xs transition-all hover:bg-white/10 whitespace-nowrap w-full text-left ${
+    isLayerActive ? 'bg-white/10 border-white/30' : ''
+  }`}
+>
     <span className={`text-[10px] font-mono uppercase tracking-wider text-left transition-colors duration-200 ${
       isLayerActive ? 'text-white' : 'text-white/50'
     }`}>
