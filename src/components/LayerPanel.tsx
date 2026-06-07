@@ -113,7 +113,7 @@ function Shield(props: any) {
   );
 }
 
-function LayerPanel({ data, activeLayers, setActiveLayers, isMobile, mapStyle, toggleMapStyle, toggleProjection, projection }: LayerPanelProps) {
+function LayerPanel({ data, activeLayers, setActiveLayers, isMobile, mapStyle, toggleMapStyle, toggleProjection, projection, setMapProjection, setMapStyle }: LayerPanelProps) {
   const [hoveredGroup, setHoveredGroup] = useState<string | null>(null);
 
   const toggle = (key: string) => setActiveLayers((prev: any) => ({ ...prev, [key]: !prev[key] }));
@@ -188,31 +188,8 @@ function LayerPanel({ data, activeLayers, setActiveLayers, isMobile, mapStyle, t
   return (
     // 1. pt-16을 pt-24로 늘려 헤더 밑으로 상단 여백을 충분히 확보
     // 2. 가로 스크롤을 막고 팝업이 잘리지 않도록 overflow-visible 추가
-    <div className="absolute top-0 left-0 h-full w-[80px] border-r border-[#2A2A2A] flex flex-col pt-24 pb-8 z-[600] pointer-events-auto bg-[#121212] shadow-2xl overflow-visible">
+    <div className="absolute top-0 left-0 h-full w-[80px] border-r border-[#2A2A2A] flex flex-col pt-24 pb-8 z-[100] pointer-events-auto bg-[#121212] shadow-2xl overflow-visible">
       
-      {/* ── 상단 지도 조작 버튼 영역 (2D/3D & Satellite) ── */}
-      {toggleProjection && toggleMapStyle && (
-        <div className="flex flex-col items-center gap-4 mt-2 mb-6 w-full border-b border-[#2A2A2A] pb-6">
-          <button 
-            onClick={toggleProjection}
-            title={projection === 'globe' ? "Switch to 2D" : "Switch to 3D"}
-            className="p-2 rounded bg-[#1A1A1A] border border-[#333] hover:bg-[#2A2A2A] text-gray-400 hover:text-white transition-colors"
-          >
-            {projection === 'globe' ? <Globe className="w-5 h-5" /> : <MapPinned className="w-5 h-5" />}
-          </button>
-          <button 
-            onClick={toggleMapStyle}
-            title="Satellite View"
-            className={`p-2 rounded transition-colors ${
-              mapStyle === 'satellite' 
-                ? 'bg-[var(--cyan-primary)]/20 border border-[var(--cyan-primary)]/50 text-[var(--cyan-primary)]' 
-                : 'bg-[#1A1A1A] border border-[#333] text-gray-400 hover:bg-[#2A2A2A] hover:text-white'
-            }`}
-          >
-            <Satellite className="w-5 h-5" />
-          </button>
-        </div>
-      )}
 
       {/* ── 기존 레이어 메뉴 영역 ── */}
       {/* 3. overflow-y-auto 삭제, gap-8을 gap-6으로 줄여 화면에 다 들어가게 함 */}
