@@ -25,8 +25,8 @@ interface LayerPanelProps {
 
 const LAYER_GROUPS = [
   {
-    label: 'SDK',
-    fullLabel: 'HORUS SDK',
+    label: '▹ SDK',
+    fullLabel: '▶ HORUS SDK',
     color: '#1565C0',
     layers: [
       { key: 'sdk_sea', label: 'Maritime Lines', icon: Anchor, color: '#4FC3F7', dataKey: 'sdk_entities' },
@@ -34,8 +34,8 @@ const LAYER_GROUPS = [
     ],
   },
   {
-    label: 'AVIATION',
-    fullLabel: 'AVIATION',
+    label: '▹ AVIAT',
+    fullLabel: '▶ AVIATION',
     color: '#00E5FF',
     layers: [
       { key: 'flights', label: 'Commercial', icon: Plane, color: '#00E5FF', dataKey: 'commercial_flights' },
@@ -45,8 +45,8 @@ const LAYER_GROUPS = [
     ],
   },
   {
-    label: 'MARITIME',
-    fullLabel: 'MARITIME & SPACE',
+    label: '▹ MT&S',
+    fullLabel: '▶ MARITIME & SPACE',
     color: '#00BCD4',
     layers: [
       { key: 'maritime', label: 'Maritime / Naval', icon: Ship, color: '#00BCD4', dataKey: 'maritime_ships,maritime_ports,maritime_chokepoints' },
@@ -55,8 +55,8 @@ const LAYER_GROUPS = [
     ],
   },
   {
-    label: 'SURVEIL',
-    fullLabel: 'SURVEILLANCE',
+    label: '▹ SRVL',
+    fullLabel: '▶ SURVEILLANCE',
     color: '#39FF14',
     layers: [
       { key: 'cctv', label: 'CCTV Cameras', icon: Camera, color: '#39FF14', dataKey: 'cameras' },
@@ -64,8 +64,8 @@ const LAYER_GROUPS = [
     ],
   },
   {
-    label: 'HAZARD',
-    fullLabel: 'NATURAL HAZARDS',
+    label: '▹ HZD',
+    fullLabel: '▶ NATURAL HAZARDS',
     color: '#FF9500',
     layers: [
       { key: 'earthquakes', label: 'Earthquakes (24h)', icon: Activity, color: '#FF9500', dataKey: 'earthquakes' },
@@ -74,8 +74,8 @@ const LAYER_GROUPS = [
     ],
   },
   {
-    label: 'THREAT',
-    fullLabel: 'THREATS & INFRA',
+    label: '▹ TRT',
+    fullLabel: '▶ THREATS & INFRA',
     color: '#FF3D3D',
     layers: [
       { key: 'infrastructure', label: 'Nuclear Facilities', icon: Radiation, color: '#76FF03', dataKey: 'infrastructure' },
@@ -84,8 +84,8 @@ const LAYER_GROUPS = [
     ],
   },
   {
-    label: 'NETWORK',
-    fullLabel: 'NETWORK INTEL',
+    label: '▹ NET',
+    fullLabel: '▶ NETWORK INTEL',
     color: '#00E5FF',
     layers: [
       { key: 'internet_outages', label: 'Internet Outages', icon: Network, color: '#00E5FF', dataKey: 'ioda_outages' },
@@ -93,8 +93,8 @@ const LAYER_GROUPS = [
     ],
   },
   {
-    label: 'DISPLAY',
-    fullLabel: 'DISPLAY',
+    label: '▹ CYCLE',
+    fullLabel: '▶ DISPLAY',
     color: '#448AFF',
     layers: [
       { key: 'day_night', label: 'Day / Night Cycle', icon: Sun, color: '#448AFF', dataKey: '' },
@@ -137,7 +137,7 @@ function LayerPanel({ data, activeLayers, setActiveLayers, isMobile, mapStyle, t
         {LAYER_GROUPS.map((group) => (
           <div key={group.label} className="flex flex-col gap-2">
             <div 
-              className="text-[10px] font-bold font-mono tracking-widest border-b border-white/10 pb-1"
+              className="text-[10px] font-medium font-['Inter'] tracking-widest border-b border-white/10 pb-1"
               style={{ color: group.color }}
             >
               {group.fullLabel}
@@ -155,17 +155,17 @@ function LayerPanel({ data, activeLayers, setActiveLayers, isMobile, mapStyle, t
     if (layer.key === 'sdk_ransomware') alert('Coming Soon');
     else toggle(layer.key);
   }}
-  className={`px-3 md:px-4 py-1.5 text-[10px] md:text-[11px] font-medium text-gray-300 hover:text-white bg-white/5 border border-white/10 rounded-xs transition-all hover:bg-white/10 whitespace-nowrap w-full text-left ${
+  className={`px-3 md:px-4 py-1.5 text-[10px] md:text-[11px] font-['Inter'] font-medium text-gray-300 hover:text-white bg-white/5 border border-white/10 rounded-xs transition-all hover:bg-white/10 whitespace-nowrap w-full text-left ${
     isLayerActive ? 'bg-white/10 border-white/30' : ''
   }`}
 >
-    <span className={`text-[10px] font-mono uppercase tracking-wider text-left transition-colors duration-200 ${
+    <span className={`text-[10px] font-['Inter'] uppercase tracking-wider text-left transition-colors duration-200 ${
       isLayerActive ? 'text-white' : 'text-white/50'
     }`}>
       {layer.label}
     </span>
     {count !== null && (
-      <span className="text-[9px] font-mono tabular-nums opacity-60 text-white/50">
+      <span className="text-[9px] font-['Inter'] tabular-nums opacity-60 text-white/50">
         {count.toLocaleString()}
       </span>
     )}
@@ -201,7 +201,7 @@ function LayerPanel({ data, activeLayers, setActiveLayers, isMobile, mapStyle, t
             >
               {/* 글씨를 항상 완전한 흰색(text-white)으로 고정 */}
               <div 
-               className="w-[60px] flex items-center justify-center py-1 text-[10px] font-mono font-bold text-white bg-white/5 border border-gray-700 rounded-xs transition-all hover:bg-white/10 hover:border-gray-700 cursor-pointer select-none"
+               className="w-[60px] flex items-center justify-center py-1 text-[10px] font-['Inter'] font-bold text-white bg-white/5 border border-gray-700 rounded-xs transition-all hover:bg-white/10 hover:border-gray-700 cursor-pointer select-none"
                >
                 {group.label}
                 </div>
@@ -214,7 +214,7 @@ function LayerPanel({ data, activeLayers, setActiveLayers, isMobile, mapStyle, t
                     exit={{ opacity: 0, x: -5 }}
                     className="absolute left-[70px] top-1/2 -translate-y-1/2 min-w-[200px] bg-[#1A1A1A] border border-[#333] rounded-sm p-2 shadow-2xl z-50 pointer-events-auto"
                   >
-                    <div className="text-[10px] font-bold font-mono mb-2 tracking-widest text-gray-400 border-b border-[#333] pb-1">
+                    <div className="text-[10px] font-bold font-['Inter'] mb-2 tracking-widest text-gray-400 border-b border-[#333] pb-1">
                       {group.fullLabel}
                     </div>
                     <div className="flex flex-col gap-1">
@@ -234,9 +234,9 @@ function LayerPanel({ data, activeLayers, setActiveLayers, isMobile, mapStyle, t
                                 : 'bg-transparent border-transparent hover:bg-[#222] text-gray-400'
                             }`}
                           >
-                            <span className="text-[10px] font-mono uppercase tracking-tight">{layer.label}</span>
+                            <span className="text-[10px] font-['Inter'] uppercase tracking-tight">{layer.label}</span>
                             {count !== null && (
-                              <span className={`text-[9px] font-mono tabular-nums ${isLayerActive ? 'text-gray-300' : 'text-gray-500'}`}>
+                              <span className={`text-[9px] font-['Inter'] tabular-nums ${isLayerActive ? 'text-gray-300' : 'text-gray-500'}`}>
                                 {count.toLocaleString()}
                               </span>
                             )}
