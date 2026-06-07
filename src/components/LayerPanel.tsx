@@ -25,7 +25,7 @@ interface LayerPanelProps {
 
 const LAYER_GROUPS = [
   {
-    label: 'SDK',
+    label: '▹ SDK',
     fullLabel: 'HORUS SDK',
     color: '#1565C0',
     layers: [
@@ -34,7 +34,7 @@ const LAYER_GROUPS = [
     ],
   },
   {
-    label: 'AVIATION',
+    label: '▹ AVIAT',
     fullLabel: 'AVIATION',
     color: '#00E5FF',
     layers: [
@@ -45,7 +45,7 @@ const LAYER_GROUPS = [
     ],
   },
   {
-    label: 'MARITIME',
+    label: '▹ MT&S',
     fullLabel: 'MARITIME & SPACE',
     color: '#00BCD4',
     layers: [
@@ -55,7 +55,7 @@ const LAYER_GROUPS = [
     ],
   },
   {
-    label: 'SURVEIL',
+    label: '▹ SRVL',
     fullLabel: 'SURVEILLANCE',
     color: '#39FF14',
     layers: [
@@ -64,7 +64,7 @@ const LAYER_GROUPS = [
     ],
   },
   {
-    label: 'HAZARD',
+    label: '▹ HZD',
     fullLabel: 'NATURAL HAZARDS',
     color: '#FF9500',
     layers: [
@@ -74,7 +74,7 @@ const LAYER_GROUPS = [
     ],
   },
   {
-    label: 'THREAT',
+    label: '▹ TRT',
     fullLabel: 'THREATS & INFRA',
     color: '#FF3D3D',
     layers: [
@@ -84,7 +84,7 @@ const LAYER_GROUPS = [
     ],
   },
   {
-    label: 'NETWORK',
+    label: '▹ NET',
     fullLabel: 'NETWORK INTEL',
     color: '#00E5FF',
     layers: [
@@ -93,7 +93,7 @@ const LAYER_GROUPS = [
     ],
   },
   {
-    label: 'DISPLAY',
+    label: '▹ CYCLE',
     fullLabel: 'DISPLAY',
     color: '#448AFF',
     layers: [
